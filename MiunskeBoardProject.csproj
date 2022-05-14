@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="images\boards\board.png" />
     <Resource Include="images\logo.png" />
     <Resource Include="images\pieces\connector11Left.png" />
@@ -28,10 +32,6 @@
     <Resource Include="images\pieces\connector6Rotate.png" />
     <Resource Include="images\pieces\connector7Rotate.png" />
     <Resource Include="images\pieces\connector9Rotate.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="classes\" />
   </ItemGroup>
 
 </Project>

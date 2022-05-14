@@ -43,15 +43,7 @@ namespace MiunskeBoardProject
 
         
 
-        /*void onLoad(object sender, RoutedEventArgs e)
-        {
-            foreach (ConnectorImage imageBox in FindChilds<ConnectorImage>((DependencyObject)sender))
-            {
-            
-
-                imageBox.MouseDown += new MouseButtonEventHandler(clickConnector);
-            }
-        }*/
+       
 
 
 

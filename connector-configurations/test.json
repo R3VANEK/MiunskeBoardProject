@@ -1,0 +1,198 @@
+﻿{
+  "connectors1": [
+
+    {
+      "name": "DX2",
+      "pins": 22,
+      "can-address": 205,
+      "pins-parameters": [
+        {
+          "pin": 1,
+          "can-bit": 0
+        },
+        {
+          "pin": 3,
+          "can-bit": 1
+        },
+        {
+          "pin": 4,
+          "can-bit": 2
+        },
+        {
+          "pin": 15,
+          "can-bit": 3
+        },
+        {
+          "pin": 18,
+          "can-bit": 4
+        }
+      ]
+    },
+    {
+      "name": "DX4",
+      "pins": 12,
+      "can-address": 205,
+      "pins-parameters": [
+        {
+          "pin": 1,
+          "can-bit": 7
+        },
+        {
+          "pin": 2,
+          "can-bit": 8
+        },
+        {
+          "pin": 4,
+          "can-bit": 9
+        },
+        {
+          "pin": 6,
+          "can-bit": 10
+        },
+        {
+          "pin": 7,
+          "can-bit": 11
+        },
+        {
+          "pin": 8,
+          "can-bit": 12
+        },
+        {
+          "pin": 9,
+          "can-bit": 13
+        },
+        {
+          "pin": 10,
+          "can-bit": 14
+        }
+      ]
+    },
+    {
+      "name": "DX5",
+      "pins": 18,
+      "can-address": 205,
+      "pins-parameters": [
+        {
+          "pin": 1,
+          "can-bit": 15
+        },
+        {
+          "pin": 10,
+          "can-bit": 16
+        },
+        {
+          "pin": 11,
+          "can-bit": 17
+        },
+        {
+          "pin": 12,
+          "can-bit": 18
+        },
+        {
+          "pin": 14,
+          "can-bit": 20
+        },
+        {
+          "pin": 15,
+          "can-bit": 21
+        },
+        {
+          "pin": 16,
+          "can-bit": 22
+        },
+        {
+          "pin": 17,
+          "can-bit": 23
+        },
+        {
+          "pin": 18,
+          "can-bit": 24
+        }
+      ]
+    },
+    {
+      "name": "DX6",
+      "pins": 10,
+      "can-address": 205,
+      "pins-parameters": [
+        {
+          "pin": 8,
+          "can-bit": 25
+        },
+        {
+          "pin": 9,
+          "can-bit": 26
+        },
+        {
+          "pin": 10,
+          "can-bit": 27
+        }
+      ]
+    },
+    {
+      "name": "DX3",
+      "pins": 14,
+      "can-address": 205,
+      "pins-parameters": [
+        {
+          "pin": 1,
+          "can-bit": 28
+        },
+        {
+          "pin": 2,
+          "can-bit": 31
+        },
+        {
+          "pin": 3,
+          "can-bit": 29
+        },
+        {
+          "pin": 4,
+          "can-bit": 30
+        },
+        {
+          "pin": 5,
+          "can-bit": 32
+        },
+        {
+          "pin": 6,
+          "can-bit": 33
+        },
+        {
+          "pin": 7,
+          "can-bit": 34
+        },
+        {
+          "pin": 8,
+          "can-bit": 35
+        },
+        {
+          "pin": 9,
+          "can-bit": 36
+        },
+        {
+          "pin": 10,
+          "can-bit": 37
+        },
+        {
+          "pin": 11,
+          "can-bit": 38
+        },
+        {
+          "pin": 12,
+          "can-bit": 39
+        },
+        {
+          "pin": 13,
+          "can-bit": 40
+        },
+        {
+          "pin": 14,
+          "can-bit": 41
+        }
+      ]
+    }
+
+
+  ]
+}

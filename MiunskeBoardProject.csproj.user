@@ -10,7 +10,7 @@
     <Compile Update="boards\MiunskeG2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ConnectorDetailsWindow.xaml.cs">
+    <Compile Update="windows\ConnectorDetailsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ui-elements\ConnectorColumn.xaml.cs">
@@ -24,10 +24,7 @@
     <Page Update="boards\MiunskeG2.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="ConnectorDetailsWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MainWindow.xaml">
+    <Page Update="windows\ConnectorDetailsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ui-elements\ConnectorColumn.xaml">
