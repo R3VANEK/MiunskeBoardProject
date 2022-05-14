@@ -1,0 +1,74 @@
+﻿<Window x:Class="MiunskeBoardProject.ConnectorDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiunskeBoardProject"
+        xmlns:ui="clr-namespace:MiunskeBoardProject.ui_elements"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="CanResize"
+        Title="ConnectorDetailsWindow" Height="400" Width="400">
+
+    <Window.Resources>
+        <ResourceDictionary>
+
+
+            <Style x:Key="Holder" TargetType="StackPanel">
+                <Setter Property="Height" Value="200"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Width" Value="auto"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="Column" TargetType="StackPanel">
+                <Setter Property="Width" Value="50"/>
+
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Style.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="50"/>
+                        <Setter Property="Margin" Value="0,5,0,0"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+
+
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+    <Grid Margin="50,50,50,50">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="90*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="connectorNameXAML" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"  VerticalAlignment="Top" Grid.Row="0" Margin="0,-3,0,0" RenderTransformOrigin="0.496,-0.161">
+            nazwa connectora
+        </TextBlock>
+
+
+        <StackPanel Orientation="Horizontal" Style="{StaticResource Holder}" Name="ConnectorHolderXAML" Grid.Row="1" Margin="0,10,0,0">
+
+            <!--<ui:ConnectorColumn />
+
+            <ui:ConnectorColumn/>
+
+            <ui:ConnectorColumn/>
+
+            <ui:ConnectorColumn/>
+
+            <ui:ConnectorColumn/>-->
+
+
+
+        </StackPanel>
+
+    </Grid>
+</Window>

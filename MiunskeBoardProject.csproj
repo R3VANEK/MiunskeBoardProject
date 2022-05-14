@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\boards\board.png" />
+    <None Remove="images\logo.png" />
+    <None Remove="images\pieces\connector11Left.png" />
+    <None Remove="images\pieces\connector4Rotate.png" />
+    <None Remove="images\pieces\connector5Rotate.png" />
+    <None Remove="images\pieces\connector6Left.png" />
+    <None Remove="images\pieces\connector6Rotate.png" />
+    <None Remove="images\pieces\connector7Rotate.png" />
+    <None Remove="images\pieces\connector9Rotate.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\boards\board.png" />
+    <Resource Include="images\logo.png" />
+    <Resource Include="images\pieces\connector11Left.png" />
+    <Resource Include="images\pieces\connector4Rotate.png" />
+    <Resource Include="images\pieces\connector5Rotate.png" />
+    <Resource Include="images\pieces\connector6Left.png" />
+    <Resource Include="images\pieces\connector6Rotate.png" />
+    <Resource Include="images\pieces\connector7Rotate.png" />
+    <Resource Include="images\pieces\connector9Rotate.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="classes\" />
+  </ItemGroup>
+
+</Project>
