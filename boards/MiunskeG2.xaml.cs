@@ -17,13 +17,26 @@ using MiunskeBoardProject.classes;
 namespace MiunskeBoardProject.boards
 {
     /// <summary>
-    /// Logika interakcji dla klasy MiunskeG2.xaml
+    ///  Klasa zawierająca generyczne metody inicjujące logikę panelu Miunske<br/>
+    ///  Przy kopiowaniu tego pliku przy dodawaniu nowego panelu prosimy zmienić parametry:<br/>
+    ///  <list type="bullet|number|table">
+    ///     <item>
+    ///         <term>fullBoardName</term>
+    ///         <description>Pełna nazwa panelu</description>
+    ///     </item>   
+    ///     
+    /// <item>
+    ///     <term>configFileName</term>
+    ///     <description>Nazwa pliku konfiguracyjnego json utworzonego w katalogu MiunskeBoardProject/connector-configurations</description>
+    /// </item>
+    ///  </list>
     /// </summary>
     public partial class MiunskeG2 : UserControl , BoardInterface
     {
         //to będzie w pętli przesyłane obok canRead
         //public event EventHandler<string> BoardInterface.CANMessageEvent;
-        public static event EventHandler<string> CANMessageEvent;
+        public static event EventHandler<CANMessage> CANMessageEvent;
+
 
         public const string fullBoardName = "Miunske A1-1203-3015 DigitalPlatine G2 BL: 0.1.0.8";
         public const string configFileName = "MiunskeG2.json";
@@ -33,7 +46,20 @@ namespace MiunskeBoardProject.boards
         private RootJson configInfo;
 
         
-
+        /// <summary>
+        /// Konstruktor klasy Panelu<br/>
+        /// <list type="bullet">
+        ///     <item>
+        ///         <description>Inicjuje wygląd XAML</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>waliduje przypisany plik konfiguracyjny json</description>
+        ///     </item>
+        ///     <item>
+        ///         <description>odnajduje wszystkie kontrolery w XAMLU i dopisuje do nich zdarzenie onClick wyświetlajace ConnectorDetailsWindow</description>
+        ///     </item>
+        /// </list>
+        /// </summary>
         public MiunskeG2()
         {
             
@@ -58,22 +84,27 @@ namespace MiunskeBoardProject.boards
             InitializeComponent();
             Loaded += new RoutedEventHandler(onLoad);
 
-
-           
-
         }
 
 
-        private async void simulateCANMessages()
+        public async void simulateCANMessages()
         {
             await System.Threading.Tasks.Task.Delay(4000);
             int i = 0;
+            Random r = new Random();
             while (true)
             {
+                CANMessage message = new CANMessage();
+                message.address = 205;
+                message.len = 8;
+                for (int j = 0; j < message.len; j++)
+                    message.aby_data[i] = (char)r.Next(0, 255);
+
                 await System.Threading.Tasks.Task.Delay(6000);
                 System.Diagnostics.Trace.WriteLine("can message incoming " + i);
-                CANMessageEvent?.Invoke(this, i.ToString());
+                CANMessageEvent?.Invoke(this, message);
                 i += 1;
+
             }
 
         }
@@ -82,7 +113,7 @@ namespace MiunskeBoardProject.boards
 
 
         /// <summary>
-        /// code that connects every connectorControl with onClick event
+        ///     metoda odnajdująca i przypisująca do wszystkich konnektorów w xamlu onlclicka wyświetlającego ConnectorDetailsWindow
         /// </summary>
         void onLoad(object sender, RoutedEventArgs e)
         {

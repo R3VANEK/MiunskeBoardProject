@@ -7,16 +7,23 @@ using System.Windows.Media;
 using MiunskeBoardProject.classes;
 using Newtonsoft.Json;
 using System.IO;
-using MiunskeBoardProject.classes;
+
 
 namespace MiunskeBoardProject.base_models
 {
+    /// <summary>
+    ///     Zawiera metody niezbędne do symulowania płyt Miunske
+    /// </summary>
     interface BoardInterface
     {
 
-        public static event EventHandler<string> CANMessageEvent;
+        
         
 
+        /// <summary>
+        ///     metoda obsługująca kliknięcie na element graficzny odpowiadający konektorowi<br/>
+        ///     uruchamia nowe okno ConnectorDetailsWindow pokazujące szczegółu sygnałów konektora
+        /// </summary>
         protected static void clickConnector(object sender, System.Windows.Input.MouseButtonEventArgs e, RootJson configInfo, string configFileName)
         {
 
@@ -39,10 +46,10 @@ namespace MiunskeBoardProject.base_models
         /// </summary>
         /// <returns>
         ///     1 - poprawny plik json<br/>
-        ///     -1 - nie udało się otworzyć pliku<br/>
-        ///     -2 - atrybut 'connectors' niepoprawnie sformatowany<br/>
-        ///     -3 - atrybuty pojedyńczego 'connectors' niepoprawnie sformatowane<br/>
-        ///     -4 - atrybuty pojedyńczego 'pins-parameters' niepoprawnie sformatowane<br/>
+        ///    -1 - nie udało się otworzyć pliku<br/>
+        ///    -2 - atrybut 'connectors' niepoprawnie sformatowany<br/>
+        ///    -3 - atrybuty pojedyńczego 'connectors' niepoprawnie sformatowane<br/>
+        ///    -4 - atrybuty pojedyńczego 'pins-parameters' niepoprawnie sformatowane<br/>
         /// </returns>
         protected static int validateJsonConfig(string jsonFileName)
         {
@@ -74,7 +81,13 @@ namespace MiunskeBoardProject.base_models
             return 1;
         }
 
-
+        /// <summary>
+        /// Deserializuje plik json w klasę C# używaną potem przez ConnectorDetailsWindow<br/>
+        /// Uwaga : prosimy wywołać przed tą metodę funkcję BoardInterface.validateJsonConfig
+        /// </summary>
+        /// <returns>
+        ///     Obiekt klasy RootJson zawierający dane na temat zachowań konektorów
+        /// </returns>
         protected static RootJson generateConfig(string jsonFileName)
         {
             string raw = File.ReadAllText("../../../connector-configurations/" + jsonFileName);
