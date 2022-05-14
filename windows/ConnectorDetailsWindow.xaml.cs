@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using MiunskeBoardProject.base_models;
 using MiunskeBoardProject.ui_elements;
 using MiunskeBoardProject.classes;
+using MiunskeBoardProject.boards;
 
 namespace MiunskeBoardProject
 {
@@ -27,6 +28,10 @@ namespace MiunskeBoardProject
         public ConnectorDetailsWindow(ConnectorControl connector, RootJson configInfo, string configFileName)
         {
             InitializeComponent();
+
+
+            MiunskeG2.CANMessageEvent += MiunskeG2_CANMessageEvent;
+
             this.connector = connector;
             connectorNameXAML.Text = "Connector " + this.connector.Name;
 
@@ -48,11 +53,14 @@ namespace MiunskeBoardProject
 
             ConnectorHolderXAML.Children.Add(new ConnectorColumnSpecial());
 
-
-
-            
-
-
         }
+
+        private void MiunskeG2_CANMessageEvent(object sender, string e)
+        {
+            System.Diagnostics.Trace.WriteLine("can message " + e + " read in details window");
+        }
+
+        
+
     }
 }

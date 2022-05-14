@@ -21,7 +21,9 @@ namespace MiunskeBoardProject.boards
     /// </summary>
     public partial class MiunskeG2 : UserControl , BoardInterface
     {
-
+        //to będzie w pętli przesyłane obok canRead
+        //public event EventHandler<string> BoardInterface.CANMessageEvent;
+        public static event EventHandler<string> CANMessageEvent;
 
         public const string fullBoardName = "Miunske A1-1203-3015 DigitalPlatine G2 BL: 0.1.0.8";
         public const string configFileName = "MiunskeG2.json";
@@ -30,6 +32,7 @@ namespace MiunskeBoardProject.boards
         private List<ConnectorControl> connectorControls;
         private RootJson configInfo;
 
+        
 
         public MiunskeG2()
         {
@@ -55,10 +58,25 @@ namespace MiunskeBoardProject.boards
             InitializeComponent();
             Loaded += new RoutedEventHandler(onLoad);
 
+
+           
+
         }
 
 
+        private async void simulateCANMessages()
+        {
+            await System.Threading.Tasks.Task.Delay(4000);
+            int i = 0;
+            while (true)
+            {
+                await System.Threading.Tasks.Task.Delay(6000);
+                System.Diagnostics.Trace.WriteLine("can message incoming " + i);
+                CANMessageEvent?.Invoke(this, i.ToString());
+                i += 1;
+            }
 
+        }
 
 
 
@@ -72,8 +90,12 @@ namespace MiunskeBoardProject.boards
             {
                 imageBox.MouseDown += new MouseButtonEventHandler((s,e)=>BoardInterface.clickConnector(s,e,configInfo, configFileName));
                 this.connectorControls.Add(imageBox);
-                
+
+
+                simulateCANMessages();
             }
+
+            
         }
 
     }

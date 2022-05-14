@@ -13,7 +13,9 @@ namespace MiunskeBoardProject.base_models
 {
     interface BoardInterface
     {
-       
+
+        public static event EventHandler<string> CANMessageEvent;
+        
 
         protected static void clickConnector(object sender, System.Windows.Input.MouseButtonEventArgs e, RootJson configInfo, string configFileName)
         {
