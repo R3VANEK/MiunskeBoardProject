@@ -94,9 +94,7 @@ namespace MiunskeBoardProject.boards
             Random r = new Random();
             while (true)
             {
-                CANMessage message = new CANMessage();
-                message.address = 205;
-                message.len = 8;
+                CANMessage message = new CANMessage(205, 8);
                 for (int j = 0; j < message.len; j++)
                     message.aby_data[i] = (char)r.Next(0, 255);
 

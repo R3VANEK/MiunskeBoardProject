@@ -9,5 +9,17 @@ namespace MiunskeBoardProject.classes
         public long address { get; set; }
         public long len { get; set; }
         public char[] aby_data { get; set; }
+
+
+        public CANMessage(long address, long len)
+        {
+            this.address = address;
+            this.len = len;
+            this.aby_data = new char[len];
+        }
+
     }
+
+
+    
 }
