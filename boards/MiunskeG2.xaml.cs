@@ -83,7 +83,7 @@ namespace MiunskeBoardProject.boards
             {
                 CANMessage message = new CANMessage(205, 8);
                 for (int j = 0; j < message.len; j++)
-                    message.aby_data[i] = (char)r.Next(0, 255);
+                    message.aby_data[j] = (char)r.Next(0, 254);
 
                 await System.Threading.Tasks.Task.Delay(6000);
                 System.Diagnostics.Trace.WriteLine("can message incoming " + i);

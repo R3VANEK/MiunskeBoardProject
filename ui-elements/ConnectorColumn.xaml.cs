@@ -18,6 +18,11 @@ namespace MiunskeBoardProject.ui_elements
     /// </summary>
     public partial class ConnectorColumn : UserControl
     {
+        /// <summary>
+        /// konstruktor elementu XAML odpowiadającego za pojedyńczą kolumnę widoku konektora
+        /// </summary>
+        /// <param name="number1">numer pina u góry kolumny</param>
+        /// <param name="number2">numer pina na dolu kolumny</param>
         public ConnectorColumn(int number1, int number2)
         {
             InitializeComponent();

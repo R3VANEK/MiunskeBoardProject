@@ -63,15 +63,35 @@ namespace MiunskeBoardProject
                 return;
             }
 
-           
 
-            for (double i = connector.Pins; i > 0; i -= 2)
+            PinsParameter pinTest;
+            for (int i = connectorConfig.PinsParameters.Count-1; i > 0; i-=2)
             {
-                ConnectorHolderXAML.Children.Add(new ConnectorColumn((int)i, (int)(i-1)));
+                pinTest = connectorConfig.PinsParameters[i];
+
+                if(pinTest.Type == "boolean")
+                {
+                    ConnectorHolderXAML.Children.Add(new ConnectorColumn(i+1, i));
+                }
+                else if(pinTest.Type == "value")
+                {
+                    ConnectorHolderXAML.Children.Add(new ConnectorColumnValue(i+1, i));
+                }
+                else
+                {
+                    connectorNameXAML.Text = "Nieprawidłowa wartość 'type' w pinie " + pinTest.Pin;
+                }
             }
+
+
+            /*for (double i = connector.Pins; i > 0; i -= 2)
+            {
+               
+                ConnectorHolderXAML.Children.Add(new ConnectorColumn((int)i, (int)(i-1)));
+            }*/
+
+
             ConnectorHolderXAML.Children.Add(new ConnectorColumnSpecial());
-
-
 
             MiunskeG2.CANMessageEvent += MiunskeG2_CANMessageEvent;
         }
