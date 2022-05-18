@@ -24,9 +24,14 @@ namespace MiunskeBoardProject
     /// </summary>
     public partial class ConnectorDetailsWindow : Window
     {
+        public 
+
 
         private ConnectorControl connectorControl { get; set; }
         private Connector connectorConfig { get; set; }
+
+
+        protected static event EventHandler<CANMessage> CANMessageEvent;
 
 
         /// <summary>
@@ -82,14 +87,6 @@ namespace MiunskeBoardProject
                     connectorNameXAML.Text = "Nieprawidłowa wartość 'type' w pinie " + pinTest.Pin;
                 }
             }
-
-
-            /*for (double i = connector.Pins; i > 0; i -= 2)
-            {
-               
-                ConnectorHolderXAML.Children.Add(new ConnectorColumn((int)i, (int)(i-1)));
-            }*/
-
 
             ConnectorHolderXAML.Children.Add(new ConnectorColumnSpecial());
 
