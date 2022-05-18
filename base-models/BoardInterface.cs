@@ -24,7 +24,7 @@ namespace MiunskeBoardProject.base_models
         ///     metoda obsługująca kliknięcie na element graficzny odpowiadający konektorowi<br/>
         ///     uruchamia nowe okno ConnectorDetailsWindow pokazujące szczegółu sygnałów konektora
         /// </summary>
-        protected static void clickConnector(object sender, System.Windows.Input.MouseButtonEventArgs e, RootJson configInfo, string configFileName)
+        protected static void clickConnector(object sender, System.Windows.Input.MouseButtonEventArgs e, Root configInfo, string configFileName)
         {
 
             ConnectorControl connector = (ConnectorControl)sender;
@@ -41,60 +41,7 @@ namespace MiunskeBoardProject.base_models
             cw.Show();
         }
 
-        /// <summary>
-        /// Waliduje poprawności pliku konfiguracyjnego json przypisanego do płyty
-        /// </summary>
-        /// <returns>
-        ///     1 - poprawny plik json<br/>
-        ///    -1 - nie udało się otworzyć pliku<br/>
-        ///    -2 - atrybut 'connectors' niepoprawnie sformatowany<br/>
-        ///    -3 - atrybuty pojedyńczego 'connectors' niepoprawnie sformatowane<br/>
-        ///    -4 - atrybuty pojedyńczego 'pins-parameters' niepoprawnie sformatowane<br/>
-        /// </returns>
-        protected static int validateJsonConfig(string jsonFileName)
-        {
-
-            try
-            {
-                string raw = File.ReadAllText("../../../connector-configurations/" + jsonFileName);
-                RootJson config = JsonConvert.DeserializeObject<RootJson>(raw);
-
-                if (config.connectors == null)
-                    return -2;
-
-                foreach(ConnectorJSON conn in config.connectors)
-                {
-                    if (conn.name == null || conn.pins == null || conn.PinsParameters == null)
-                        return -3;
-
-                    foreach(PinsParameterJSON param in conn.PinsParameters)
-                        if (param.pin == null || param.CanBit == null)
-                            return -4;
-                    
-                }
-            }
-            catch (Exception)
-            {
-                return -1;
-            }
-
-            return 1;
-        }
-
-        /// <summary>
-        /// Deserializuje plik json w klasę C# używaną potem przez ConnectorDetailsWindow<br/>
-        /// Uwaga : prosimy wywołać przed tą metodę funkcję BoardInterface.validateJsonConfig
-        /// </summary>
-        /// <returns>
-        ///     Obiekt klasy RootJson zawierający dane na temat zachowań konektorów
-        /// </returns>
-        protected static RootJson generateConfig(string jsonFileName)
-        {
-            string raw = File.ReadAllText("../../../connector-configurations/" + jsonFileName);
-            return JsonConvert.DeserializeObject<RootJson>(raw);
-        } 
-
-
+      
 
         protected static IEnumerable<T> FindChilds<T>(DependencyObject depObj) where T : DependencyObject
         {

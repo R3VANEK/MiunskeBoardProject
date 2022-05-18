@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MiunskeBoardProject.base_models;
 using MiunskeBoardProject.classes;
+using Newtonsoft.Json;
 
 namespace MiunskeBoardProject.boards
 {
@@ -43,7 +36,7 @@ namespace MiunskeBoardProject.boards
 
 
         private List<ConnectorControl> connectorControls;
-        private RootJson configInfo;
+        private JsonParser jsonParser;
 
         
         /// <summary>
@@ -62,24 +55,18 @@ namespace MiunskeBoardProject.boards
         /// </summary>
         public MiunskeG2()
         {
-            
 
-            int validateStatus = BoardInterface.validateJsonConfig(configFileName);
-            if (validateStatus != 1)
+            try
             {
-                switch (validateStatus)
-                {
-                    case -1: MessageBox.Show("niepoprawny układ pliku : " + configFileName + " proszę sprawdzić formatowanie"); break;
-                    case -2: MessageBox.Show("neipoprawne formatowanie parametru 'connectors' w pliku " + configFileName); break;
-                    case -3: MessageBox.Show("niepoprawne formatowanie atrybutów pojedyńczego 'connectors' w pliku " + configFileName); break;
-                    case -4: MessageBox.Show("niepoprawe formatowanie pojedyńczego elementu listy 'pins-parameters w pliku '"+ configFileName); break;
-                }
-                return;
+                jsonParser = new JsonParser(configFileName);
             }
-
-
+            catch(JsonSerializationException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
+            
             connectorControls = new List<ConnectorControl>();
-            configInfo = BoardInterface.generateConfig(configFileName);
 
             InitializeComponent();
             Loaded += new RoutedEventHandler(onLoad);
@@ -117,7 +104,7 @@ namespace MiunskeBoardProject.boards
         {
             foreach (ConnectorControl imageBox in BoardInterface.FindChilds<ConnectorControl>((DependencyObject)sender))
             {
-                imageBox.MouseDown += new MouseButtonEventHandler((s,e)=>BoardInterface.clickConnector(s,e,configInfo, configFileName));
+                imageBox.MouseDown += new MouseButtonEventHandler((s,e)=>BoardInterface.clickConnector(s,e,jsonParser.getConfigInfo(), configFileName));
                 this.connectorControls.Add(imageBox);
 
 

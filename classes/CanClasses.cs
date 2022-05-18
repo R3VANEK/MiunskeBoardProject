@@ -6,12 +6,12 @@ namespace MiunskeBoardProject.classes
 {
     public class CANMessage
     {
-        public long address { get; set; }
+        public int address { get; set; }
         public long len { get; set; }
         public char[] aby_data { get; set; }
 
 
-        public CANMessage(long address, long len)
+        public CANMessage(int address, long len)
         {
             this.address = address;
             this.len = len;

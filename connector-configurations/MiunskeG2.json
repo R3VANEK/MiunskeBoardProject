@@ -99,7 +99,7 @@
         {
           "pin": 1,
           "can-address": 205,
-          "type ": "boolean",
+          "type": "boolean",
           "can-bits": "0"
         },
         {
@@ -147,41 +147,49 @@
         },
         {
           "pin": 1,
+          "can-address" :  205,
           "type": "boolean",
           "can-bits": "7"
         },
         {
           "pin": 2,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "8"
         },
         {
           "pin": 4,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "9"
         },
         {
           "pin": 6,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "10"
         },
         {
           "pin": 7,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "11"
         },
         {
           "pin": 8,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "12"
         },
         {
           "pin": 9,
+          "can-address": 205,
           "type": "boolean",
-          "can-bits": "!3"
+          "can-bits": "13"
         },
         {
           "pin": 10,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "14"
         }
@@ -298,71 +306,85 @@
       "pins-parameters": [
         {
           "pin": 1,
+          "can-address":  205,
           "type": "boolean",
           "can-bits": "28"
         },
         {
           "pin": 2,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "31"
         },
         {
           "pin": 3,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "29"
         },
         {
           "pin": 4,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "30"
         },
         {
           "pin": 5,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "32"
         },
         {
           "pin": 6,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "33"
         },
         {
           "pin": 7,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "34"
         },
         {
           "pin": 8,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "35"
         },
         {
           "pin": 9,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "36"
         },
         {
           "pin": 10,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "37"
         },
         {
           "pin": 11,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "38"
         },
         {
           "pin": 12,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "39"
         },
         {
           "pin": 13,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "40"
         },
         {
           "pin": 14,
+          "can-address": 205,
           "type": "boolean",
           "can-bits": "41"
         }

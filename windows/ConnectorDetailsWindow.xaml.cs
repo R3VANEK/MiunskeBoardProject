@@ -13,6 +13,7 @@ using MiunskeBoardProject.base_models;
 using MiunskeBoardProject.ui_elements;
 using MiunskeBoardProject.classes;
 using MiunskeBoardProject.boards;
+using static MiunskeBoardProject.classes.JsonParser;
 
 namespace MiunskeBoardProject
 {
@@ -25,7 +26,7 @@ namespace MiunskeBoardProject
     {
 
         private ConnectorControl connectorControl { get; set; }
-        private ConnectorJSON connectorConfig { get; set; }
+        private Connector connectorConfig { get; set; }
 
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace MiunskeBoardProject
         /// <param name="connector">element XAML z którego generuje się obiekt</param>
         /// <param name="configInfo">sparsowany plik konfiguracyjny panelu na którym jest konektor</param>
         /// <param name="configFileName">nazwa pliku konfiguracyjnego panelu</param>
-        public ConnectorDetailsWindow(ConnectorControl connector, RootJson configInfo, string configFileName)
+        public ConnectorDetailsWindow(ConnectorControl connector, Root configInfo, string configFileName)
         {
             InitializeComponent();
 
@@ -46,12 +47,12 @@ namespace MiunskeBoardProject
             connectorNameXAML.Text = "Connector " + this.connectorControl.Name;
 
             bool hasConfig = false;
-            for(int i = 0; i < configInfo.connectors.Count; i++)
+            for(int i = 0; i < configInfo.Connectors.Count; i++)
             {
-                if (configInfo.connectors[i].name == this.connectorControl.Name)
+                if (configInfo.Connectors[i].Name == this.connectorControl.Name)
                 {
                     hasConfig = true;
-                    connectorConfig = configInfo.connectors[i];
+                    connectorConfig = configInfo.Connectors[i];
                 }
                     
             }
@@ -86,8 +87,10 @@ namespace MiunskeBoardProject
         {
             //System.Diagnostics.Trace.WriteLine("can message " + e + " read in details window");
             // zgodnie z jsonem rozdysponuj plusy i minusy
-            if (message.address != connectorConfig.CanAddress)
+
+            if(!connectorConfig.CanAddresses.Contains(message.address)){
                 return;
+            }
 
             for(int i = 0; i < connectorConfig.PinsParameters.Count; i++)
             {
