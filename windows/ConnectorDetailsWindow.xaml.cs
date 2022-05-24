@@ -43,7 +43,7 @@ namespace MiunskeBoardProject
         {
             InitializeComponent();
 
-            /*
+            
             
 
             this.ConnectorControl = connector;
@@ -67,9 +67,49 @@ namespace MiunskeBoardProject
             }
 
 
-            PinsParameter pinLoop;
-            PinsParameter pinLoop1;
-            PinsParameter pinTest;
+            PinsParameter pinParam;
+            PinsParameter pinParam1;
+            connectorConfig.PinsParameters.Sort((x, y) => x.Pin.CompareTo(y.Pin));
+
+
+            for(int i = connectorConfig.PinsParameters.Count-1; i > 0; i -= 2)
+            {
+               
+                pinParam = connectorConfig.PinsParameters[i];
+                pinParam1 = connectorConfig.PinsParameters[i - 1];
+                
+                StackPanel columnHolderPanel = new StackPanel();
+                columnHolderPanel.Orientation = Orientation.Vertical;
+                
+                if(pinParam.Type == "boolean")
+                {
+                    columnHolderPanel.Children.Add(new PinTopBoolean(pinParam.Pin));
+                }
+                else if(pinParam.Type == "value")
+                {
+                    columnHolderPanel.Children.Add(new PinTopValue(pinParam.Pin));
+                }
+
+
+                if(pinParam1.Type == "boolean")
+                {
+                    columnHolderPanel.Children.Add(new PinBottomBoolean(pinParam1.Pin));
+                }
+                else if(pinParam1.Type == "value")
+                {
+                    columnHolderPanel.Children.Add(new PinBottomValue(pinParam1.Pin));
+                }
+
+                ConnectorHolderXAML.Children.Add(columnHolderPanel);
+               
+            }
+
+
+            ConnectorHolderXAML.Children.Add(new ConnectorColumnSpecial());
+
+            MiunskeG2.CANMessageEvent += MiunskeG2_CANMessageEvent; 
+
+            /*
             for (int i = connectorConfig.PinsParameters.Count-1; i > 0; i-=2)
             {
                 /*pinLoop = connectorConfig.PinsParameters[i];
