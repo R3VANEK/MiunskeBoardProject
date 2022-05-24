@@ -13,6 +13,18 @@
     <Compile Update="ui-elements\ConnectorColumnValue.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ui-elements\PinBottomBoolean.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui-elements\PinBottomValue.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui-elements\PinTopBoolean.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui-elements\PinTopValue.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="windows\ConnectorDetailsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,6 +40,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ui-elements\ConnectorColumnValue.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui-elements\PinBottomBoolean.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui-elements\PinBottomValue.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui-elements\PinTopBoolean.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui-elements\PinTopValue.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="windows\ConnectorDetailsWindow.xaml">

@@ -60,6 +60,15 @@
         
 
         <StackPanel Orientation="Horizontal" Style="{StaticResource Holder}" Name="ConnectorHolderXAML" Grid.Row="1" Margin="0,10,0,0">
+            <StackPanel Orientation="Vertical">
+                <ui:PinTopBoolean />
+                <ui:PinBottomBoolean />
+            </StackPanel>
+
+          
+
+
+
         </StackPanel>
 
     </Grid>

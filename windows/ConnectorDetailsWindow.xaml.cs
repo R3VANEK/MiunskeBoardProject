@@ -24,10 +24,8 @@ namespace MiunskeBoardProject
     /// </summary>
     public partial class ConnectorDetailsWindow : Window
     {
-        public 
 
-
-        private ConnectorControl connectorControl { get; set; }
+        private ConnectorControl ConnectorControl { get; set; }
         private Connector connectorConfig { get; set; }
 
 
@@ -45,16 +43,16 @@ namespace MiunskeBoardProject
         {
             InitializeComponent();
 
-
+            /*
             
 
-            this.connectorControl = connector;
-            connectorNameXAML.Text = "Connector " + this.connectorControl.Name;
+            this.ConnectorControl = connector;
+            connectorNameXAML.Text = "Connector " + this.ConnectorControl.Name;
 
             bool hasConfig = false;
             for(int i = 0; i < configInfo.Connectors.Count; i++)
             {
-                if (configInfo.Connectors[i].Name == this.connectorControl.Name)
+                if (configInfo.Connectors[i].Name == this.ConnectorControl.Name)
                 {
                     hasConfig = true;
                     connectorConfig = configInfo.Connectors[i];
@@ -69,9 +67,13 @@ namespace MiunskeBoardProject
             }
 
 
+            PinsParameter pinLoop;
+            PinsParameter pinLoop1;
             PinsParameter pinTest;
             for (int i = connectorConfig.PinsParameters.Count-1; i > 0; i-=2)
             {
+                /*pinLoop = connectorConfig.PinsParameters[i];
+                pinLoop1 = connectorConfig.PinsParameters[i + 1];
                 pinTest = connectorConfig.PinsParameters[i];
 
                 if(pinTest.Type == "boolean")
@@ -80,7 +82,8 @@ namespace MiunskeBoardProject
                 }
                 else if(pinTest.Type == "value")
                 {
-                    ConnectorHolderXAML.Children.Add(new ConnectorColumnValue(i+1, i));
+                    ConnectorHolderXAML.Children.Add(new ConnectorColumnValue(i+1,i));
+                   // ConnectorHolderXAML.Children.Add(new ConnectorColumnValue(i+1, i));
                 }
                 else
                 {
@@ -90,7 +93,7 @@ namespace MiunskeBoardProject
 
             ConnectorHolderXAML.Children.Add(new ConnectorColumnSpecial());
 
-            MiunskeG2.CANMessageEvent += MiunskeG2_CANMessageEvent;
+            MiunskeG2.CANMessageEvent += MiunskeG2_CANMessageEvent;*/
         }
 
 
