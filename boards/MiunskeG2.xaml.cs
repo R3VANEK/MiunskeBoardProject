@@ -11,7 +11,7 @@ namespace MiunskeBoardProject.boards
 {
     /// <summary>
     ///  Klasa zawierająca generyczne metody inicjujące logikę panelu Miunske<br/>
-    ///  Przy kopiowaniu tego pliku przy dodawaniu nowego panelu prosimy zmienić parametry:<br/>
+    ///  Przy kopiowaniu tego pliku przy dodawaniu nowego panelu trzeba zmienić parametry:<br/>
     ///  <list type="bullet|number|table">
     ///     <item>
     ///         <term>fullBoardName</term>
@@ -98,7 +98,7 @@ namespace MiunskeBoardProject.boards
 
 
         /// <summary>
-        ///     metoda odnajdująca i przypisująca do wszystkich konnektorów w xamlu onlclicka wyświetlającego ConnectorDetailsWindow
+        ///     metoda odnajdująca i przypisująca do wszystkich konnektorów w xamlu onclicka wyświetlającego ConnectorDetailsWindow
         /// </summary>
         void onLoad(object sender, RoutedEventArgs e)
         {

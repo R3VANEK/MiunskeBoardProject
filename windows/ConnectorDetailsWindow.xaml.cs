@@ -28,6 +28,14 @@ namespace MiunskeBoardProject
         private ConnectorControl ConnectorControl { get; set; }
         private Connector connectorConfig { get; set; }
 
+        private List<PinTopBoolean> pinTopBooleans { get; set; }
+        private List<PinBottomBoolean> pinBottomBooleans { get; set; }
+        
+        private List<PinTopValue> pinTopValues { get; set; }
+        private List<PinBottomValue> pinBottomValues { get; set; }
+
+        private List<UserControl> pinXAMLControls { get; set; }
+
 
         protected static event EventHandler<CANMessage> CANMessageEvent;
 
@@ -43,8 +51,11 @@ namespace MiunskeBoardProject
         {
             InitializeComponent();
 
-            
-            
+            this.pinTopBooleans = new List<PinTopBoolean>();
+            this.pinBottomBooleans = new List<PinBottomBoolean>();
+            this.pinTopValues = new List<PinTopValue>();
+            this.pinBottomValues = new List<PinBottomValue>();
+            this.pinXAMLControls = new List<UserControl>();
 
             this.ConnectorControl = connector;
             connectorNameXAML.Text = "Connector " + this.ConnectorControl.Name;
@@ -56,6 +67,7 @@ namespace MiunskeBoardProject
                 {
                     hasConfig = true;
                     connectorConfig = configInfo.Connectors[i];
+                    connectorConfig.PinsXAMLObjects = new List<UserControl>();
                 }
                     
             }
@@ -66,9 +78,12 @@ namespace MiunskeBoardProject
                 return;
             }
 
-
+            // konfiguracja górnego pina
             PinsParameter pinParam;
+
+            // konfiguracja dolnego pina
             PinsParameter pinParam1;
+
             connectorConfig.PinsParameters.Sort((x, y) => x.Pin.CompareTo(y.Pin));
 
 
@@ -83,21 +98,36 @@ namespace MiunskeBoardProject
                 
                 if(pinParam.Type == "boolean")
                 {
-                    columnHolderPanel.Children.Add(new PinTopBoolean(pinParam.Pin));
+                    PinTopBoolean ptb = new PinTopBoolean(pinParam.Pin);
+                    //this.pinTopBooleans.Add(ptb);
+                    connectorConfig.PinsXAMLObjects.Add(ptb);
+                    //this.pinXAMLControls.Add(ptb);
+                    columnHolderPanel.Children.Add(ptb);
                 }
                 else if(pinParam.Type == "value")
                 {
-                    columnHolderPanel.Children.Add(new PinTopValue(pinParam.Pin));
+                    PinTopValue ptv = new PinTopValue(pinParam.Pin);
+                    //this.pinTopValues.Add(ptv);
+                    //this.pinXAMLControls.Add(ptv);
+                    connectorConfig.PinsXAMLObjects.Add(ptv);
+                    columnHolderPanel.Children.Add(ptv);
                 }
 
 
                 if(pinParam1.Type == "boolean")
                 {
-                    columnHolderPanel.Children.Add(new PinBottomBoolean(pinParam1.Pin));
+                    PinBottomBoolean pbb = new PinBottomBoolean(pinParam1.Pin);
+                    //this.pinBottomBooleans.Add(pbb);
+                    //this.pinXAMLControls.Add(pbb);
+                    connectorConfig.PinsXAMLObjects.Add(pbb);
+                    columnHolderPanel.Children.Add(pbb);
                 }
                 else if(pinParam1.Type == "value")
                 {
-                    columnHolderPanel.Children.Add(new PinBottomValue(pinParam1.Pin));
+                    PinBottomValue pbv = new PinBottomValue(pinParam1.Pin);
+                   // this.pinXAMLControls.Add(pbv);
+                    connectorConfig.PinsXAMLObjects.Add(pbv);
+                    columnHolderPanel.Children.Add(pbv);
                 }
 
                 ConnectorHolderXAML.Children.Add(columnHolderPanel);
@@ -109,37 +139,14 @@ namespace MiunskeBoardProject
 
             MiunskeG2.CANMessageEvent += MiunskeG2_CANMessageEvent; 
 
-            /*
-            for (int i = connectorConfig.PinsParameters.Count-1; i > 0; i-=2)
-            {
-                /*pinLoop = connectorConfig.PinsParameters[i];
-                pinLoop1 = connectorConfig.PinsParameters[i + 1];
-                pinTest = connectorConfig.PinsParameters[i];
-
-                if(pinTest.Type == "boolean")
-                {
-                    ConnectorHolderXAML.Children.Add(new ConnectorColumn(i+1, i));
-                }
-                else if(pinTest.Type == "value")
-                {
-                    ConnectorHolderXAML.Children.Add(new ConnectorColumnValue(i+1,i));
-                   // ConnectorHolderXAML.Children.Add(new ConnectorColumnValue(i+1, i));
-                }
-                else
-                {
-                    connectorNameXAML.Text = "Nieprawidłowa wartość 'type' w pinie " + pinTest.Pin;
-                }
-            }
-
-            ConnectorHolderXAML.Children.Add(new ConnectorColumnSpecial());
-
-            MiunskeG2.CANMessageEvent += MiunskeG2_CANMessageEvent;*/
+            
         }
 
 
         /// <summary>
         ///     Subskrybent zdarzenia odczytania nowych wiadomości CAN<br/>
         ///     Na podstawie pliku konfiguracyjnego uaktualnia graficzną wizualizację pinów
+        ///     Za każdym razem wywołuje dla wszystkich Pinów ich metodę updatePinValue
         /// </summary>
         /// <param name="sender">obiekt wyzwalający event</param>
         /// <param name="message">wiadomość CAN</param>
@@ -152,8 +159,21 @@ namespace MiunskeBoardProject
                 return;
             }
 
+            //tutaj foreach dla każdego PinBottom i PinTop z wywołaniem metod updatePinValue
+            for(int i = 0; i < message.aby_data.Length; i++)
+            {
+
+            }
+
             for(int i = 0; i < connectorConfig.PinsParameters.Count; i++)
             {
+                PinsParameter pinsParameter = connectorConfig.PinsParameters[i];
+                int messageVal = message.aby_data[i];
+
+
+
+
+
                 // każdy message.aby_data[i] to int (0-255)
                 // kiedy mają się zaświecić czerwone indykatory a kiedy zielone?
                 // może zielone zawsze jeżeli aby_data[i] > 0?

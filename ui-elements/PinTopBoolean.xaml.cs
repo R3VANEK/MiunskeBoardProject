@@ -25,13 +25,13 @@ namespace MiunskeBoardProject.ui_elements
         /// <param name="pinNumber">numer pina u góry kolumny</param>
         public PinTopBoolean(int pinNumber)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             PinNumberXAML.Text = pinNumber.ToString();
         }
 
         public PinTopBoolean()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
 

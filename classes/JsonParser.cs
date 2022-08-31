@@ -28,6 +28,8 @@ namespace MiunskeBoardProject.classes
         [JsonProperty("pins-parameters")]
         public List<PinsParameter> PinsParameters { get; set; }
 
+        public List<System.Windows.Controls.UserControl> PinsXAMLObjects { get; set; }
+
     }
 
     public class PinsParameter

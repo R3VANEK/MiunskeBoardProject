@@ -18,11 +18,25 @@ namespace MiunskeBoardProject.ui_elements
     /// </summary>
     public partial class PinTopValue : UserControl
     {
-
+        public String pinType { get; set; }
+        public int canAddress { get; set; }
+        public int canBit { get; set; }
         /// <summary>
         /// konstruktor elementu XAML odpowiadającego za pojedyńczą kolumnę widoku konektora
         /// </summary>
-        /// <param name="pinNumber">numer pina u dołu kolumny</param>
+        /// <param name="pinNumber">numer pina do wyświetlenia u dołu kolumny</param>
+        /// <param name="canAddress">adres CAN na który ta kontrolka reaguje</param>
+        /// <param name="pinType">typ pina, 'Value' lub 'Boolean'</param>
+        /// <param name="canBit">offset bitu z którego jest czytana i wyświetlana wartość</param>
+        public PinTopValue(int pinNumber, String pinType, int canAddress, int canBit)
+        {
+            InitializeComponent();
+            PinNumberXAML.Text = pinNumber.ToString();
+            this.pinType = pinType;
+            this.canAddress = canAddress;
+            this.canBit = canBit;
+        }
+
         public PinTopValue(int pinNumber)
         {
             InitializeComponent();
