@@ -28,6 +28,11 @@ namespace MiunskeBoardProject.ui_elements
             PinNumberXAML.Text = pinNumber.ToString();
         }
 
+        public void updatePinValue(int newPinValue)
+        {
+            PinNumberXAML.Text = newPinValue.ToString();
+            PinNumberXAML.UpdateLayout();
+        }
 
         private void updatePinValue(object sender, bool pinValue, int pinNumber)
         {

@@ -67,7 +67,6 @@ namespace MiunskeBoardProject
                 {
                     hasConfig = true;
                     connectorConfig = configInfo.Connectors[i];
-                    connectorConfig.PinsXAMLObjects = new List<UserControl>();
                 }
                     
             }
@@ -99,17 +98,19 @@ namespace MiunskeBoardProject
                 if(pinParam.Type == "boolean")
                 {
                     PinTopBoolean ptb = new PinTopBoolean(pinParam.Pin);
+                    pinParam.XamlControl = ptb;
                     //this.pinTopBooleans.Add(ptb);
-                    connectorConfig.PinsXAMLObjects.Add(ptb);
+
+
                     //this.pinXAMLControls.Add(ptb);
                     columnHolderPanel.Children.Add(ptb);
                 }
                 else if(pinParam.Type == "value")
                 {
                     PinTopValue ptv = new PinTopValue(pinParam.Pin);
+                    pinParam.XamlControl = ptv;
                     //this.pinTopValues.Add(ptv);
                     //this.pinXAMLControls.Add(ptv);
-                    connectorConfig.PinsXAMLObjects.Add(ptv);
                     columnHolderPanel.Children.Add(ptv);
                 }
 
@@ -117,16 +118,18 @@ namespace MiunskeBoardProject
                 if(pinParam1.Type == "boolean")
                 {
                     PinBottomBoolean pbb = new PinBottomBoolean(pinParam1.Pin);
+                    pinParam1.XamlControl = pbb;
                     //this.pinBottomBooleans.Add(pbb);
                     //this.pinXAMLControls.Add(pbb);
-                    connectorConfig.PinsXAMLObjects.Add(pbb);
+
                     columnHolderPanel.Children.Add(pbb);
                 }
                 else if(pinParam1.Type == "value")
                 {
                     PinBottomValue pbv = new PinBottomValue(pinParam1.Pin);
-                   // this.pinXAMLControls.Add(pbv);
-                    connectorConfig.PinsXAMLObjects.Add(pbv);
+                    pinParam1.XamlControl = pbv;
+                    // this.pinXAMLControls.Add(pbv);
+
                     columnHolderPanel.Children.Add(pbv);
                 }
 
@@ -159,13 +162,64 @@ namespace MiunskeBoardProject
                 return;
             }
 
+            foreach(PinsParameter pinConfig in connectorConfig.PinsParameters)
+            {
+                if (pinConfig.CanAddress != message.address)
+                    continue;
+
+                int test =  int.Parse( pinConfig.CanBits[0].ToString());
+                int arrayOffset = test / 8;
+
+                // takie piny czytają z całego bajtu wartości
+                if (pinConfig.Type == "value" && pinConfig.CanBits.Contains("-"))
+                {
+                    if(pinConfig.Pin % 2 == 0)
+                    {
+                        PinBottomValue pbv = (PinBottomValue)pinConfig.XamlControl;
+                        pbv.updatePinValue(message.aby_data[arrayOffset]);
+                    }
+                    else
+                    {
+                        PinTopValue ptv = (PinTopValue)pinConfig.XamlControl;
+                        ptv.updatePinValue( message.aby_data[arrayOffset] );
+                        
+                    }
+                }
+                else if(pinConfig.Type == "boolean" && !pinConfig.CanBits.Contains("-"))
+                {
+                    if (pinConfig.Pin % 2 == 0)
+                    {
+                        PinTopBoolean pbb = (PinTopBoolean)pinConfig.XamlControl;
+
+                        int test1 = message.aby_data[arrayOffset] << 3;
+                        //pbb.updatePinValue();
+                    }
+                    else
+                    {
+                        PinBottomBoolean ptb = (PinBottomBoolean)pinConfig.XamlControl;
+                        int offset = arrayOffset - (test % 8) + 1;
+
+                        // o jeden większy offset?
+                        // dla 3 wyciąga pozycję 2
+                        bool test1 = ((message.aby_data[arrayOffset] >> offset) & 1) == 1;
+                        bool test2 = ((message.aby_data[arrayOffset] >> offset-1) & 1) == 1;
+                        //ptb.updatePinValue();
+                    }
+                }
+                
+            }
+
             //tutaj foreach dla każdego PinBottom i PinTop z wywołaniem metod updatePinValue
             for(int i = 0; i < message.aby_data.Length; i++)
             {
+                //this.pinXAMLControls.Find(xamlControl => xamlControl.)
+
+                
+
 
             }
 
-            for(int i = 0; i < connectorConfig.PinsParameters.Count; i++)
+            for(int i = 0; i < connectorConfig.PinsParameters.Count-1; i++)
             {
                 PinsParameter pinsParameter = connectorConfig.PinsParameters[i];
                 int messageVal = message.aby_data[i];

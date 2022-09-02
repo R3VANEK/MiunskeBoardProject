@@ -35,6 +35,15 @@ namespace MiunskeBoardProject.ui_elements
 
 
 
+        public void updatePinValue(bool newPinValue)
+        {
+            SolidColorBrush ellipseColor = new SolidColorBrush();
+            ellipseColor.Color = (newPinValue) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
+            BooleanEllipseXAML.Fill = ellipseColor;
+            BooleanEllipseXAML.UpdateLayout();
+        }
+
+
         //potrzebuje wiedziec wartość boolean
         // potrzebuje wiedzieć wartość numer dokładny pina
 

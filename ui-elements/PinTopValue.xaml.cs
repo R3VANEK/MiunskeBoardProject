@@ -20,15 +20,15 @@ namespace MiunskeBoardProject.ui_elements
     {
         public String pinType { get; set; }
         public int canAddress { get; set; }
-        public int canBit { get; set; }
+        public String canBit { get; set; }
         /// <summary>
         /// konstruktor elementu XAML odpowiadającego za pojedyńczą kolumnę widoku konektora
         /// </summary>
         /// <param name="pinNumber">numer pina do wyświetlenia u dołu kolumny</param>
         /// <param name="canAddress">adres CAN na który ta kontrolka reaguje</param>
         /// <param name="pinType">typ pina, 'Value' lub 'Boolean'</param>
-        /// <param name="canBit">offset bitu z którego jest czytana i wyświetlana wartość</param>
-        public PinTopValue(int pinNumber, String pinType, int canAddress, int canBit)
+        /// <param name="canBit">offsety bitu z którego jest czytana i wyświetlana wartość</param>
+        public PinTopValue(int pinNumber, String pinType, int canAddress, String canBit)
         {
             InitializeComponent();
             PinNumberXAML.Text = pinNumber.ToString();
@@ -43,6 +43,16 @@ namespace MiunskeBoardProject.ui_elements
             PinNumberXAML.Text = pinNumber.ToString();
         }
 
+        public void test()
+        {
+
+        }
+
+        public void updatePinValue(int newPinValue)
+        {
+            PinNumberXAML.Text = newPinValue.ToString();
+            PinNumberXAML.UpdateLayout();
+        }
 
         private void updatePinValue(object sender, bool pinValue, int pinNumber)
         {
