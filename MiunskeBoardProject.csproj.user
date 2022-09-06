@@ -39,6 +39,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="boards\MiunskeG3.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="boards\MiunskeG2.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -34,4 +34,16 @@
     <Resource Include="images\pieces\connector9Rotate.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="boards\MiunskeG3.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="boards\MiunskeG3.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

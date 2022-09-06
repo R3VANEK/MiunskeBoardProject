@@ -62,8 +62,12 @@ namespace MiunskeBoardProject
             if (BoardList.SelectedItem == null)
                 return;
 
-            boardHolder.Children.Add(new boards.MiunskeG2());
-            MessageBox.Show("jest");
+            boardHolder.Children.Clear();
+
+            string boardClassName = "MiunskeBoardProject.boards." +BoardList.SelectedItem.ToString();
+
+            var a = Activator.CreateInstance(Type.GetType(boardClassName), null);
+            boardHolder.Children.Add((UIElement)a);
         }
 
 
