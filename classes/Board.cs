@@ -99,16 +99,6 @@ namespace MiunskeBoardProject.classes
 
 
 
-        protected override void onLoad(EventArgs e)
-        {
-            foreach (ConnectorControl imageBox in FindChilds<ConnectorControl>((DependencyObject)sender))
-            {
-                imageBox.MouseDown += new MouseButtonEventHandler((s, e) => clickConnector(s, e, jsonParser.getConfigInfo(), configFileName));
-                this.connectorControls.Add(imageBox);
-            }
-
-
-        }
 
         /// <summary>
         /// metoda do celów testowych aplikacji, symuluje wysyłanie wiadomości CAN

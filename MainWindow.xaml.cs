@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.IO;
 
 namespace MiunskeBoardProject
 {
@@ -35,26 +36,50 @@ namespace MiunskeBoardProject
 
         public MainWindow()
         {
+            
             InitializeComponent();
-           /* this.Loaded += new RoutedEventHandler(onLoad); */
+
+            string[] boardFiles = Directory.GetFiles("../../../boards", "*xaml.cs");
+
+            foreach (string boardName in boardFiles)
+            {
+                string trimmedString = boardName.Substring(16, boardName.Length - 24);
+                BoardList.Items.Add(trimmedString);
+            }
+
+            BoardList.SelectionChanged += new SelectionChangedEventHandler(switch_Board_Visual);
+            /* this.Loaded += new RoutedEventHandler(onLoad); */
         }
 
-       
-
-        
-
-       
 
 
 
+        private void switch_Board_Visual(object sender, EventArgs e)
+        {
+            if (BoardList.SelectedItem == null)
+                return;
+
+
+            
+            MessageBox.Show("jest");
+        }
 
 
 
 
-        
 
 
-       
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
