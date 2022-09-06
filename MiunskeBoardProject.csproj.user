@@ -10,6 +10,9 @@
     <Compile Update="boards\MiunskeG2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="boards\testBoard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ui-elements\ConnectorColumnValue.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="boards\MiunskeG2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="boards\testBoard.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ui-elements\ConnectorColumnValue.xaml">

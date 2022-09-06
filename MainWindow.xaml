@@ -6,8 +6,8 @@
         xmlns:boards="clr-namespace:MiunskeBoardProject.boards"
         xmlns:local="clr-namespace:MiunskeBoardProject" xmlns:Image="clr-namespace:MiunskeBoardProject.base_models"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
-        Title="MainWindow" Height="650" Width="1000">
+
+        Title="MainWindow" Height="750" Width="1300">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -39,39 +39,65 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2"/>
-            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
 
+        <DockPanel Grid.Row="0">
+            <Button Content="Odbieraj wiadomości CAN" Width="205" Background="#FF53D4A5" BorderBrush="{x:Null}" Foreground="White" ClipToBounds="True" Margin="0,0,50,0" FontSize="15" HorizontalAlignment="Right" x:Name="canButton"/>
+        </DockPanel>
 
-        <Grid Height="650" Margin="0,-16,-154,0" Background="#5d6b85" Grid.ColumnSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"></RowDefinition>
-                <RowDefinition Height="550"></RowDefinition>
-            </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" x:Name="boardHolder" VerticalAlignment="Center" Height="500" Width="1000">
+            <boards:MiunskeG2/>
 
-            <Canvas Grid.Row="0" Background="#74becf" RenderTransformOrigin="0.503,0.817" >
-                <Image Source="/images/logo.png" Width="150" Canvas.Left="6" Canvas.Top="34"/>
-            </Canvas>
-            
-            <ListBox Grid.Row="1" Width="200" Background="#5d6b85" VerticalAlignment="Center">
-                <ListBoxItem Style="{StaticResource menuItem}">
-                    Miunske G2 A1-1203
-                </ListBoxItem>
-                <ListBoxItem Style="{StaticResource menuItem}">
-                    test
-                </ListBoxItem>
+        </StackPanel>
+
+
+        <DockPanel LastChildFill="False" Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" Grid.Row="2"  HorizontalAlignment="Stretch">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"/>
+                </Grid.ColumnDefinitions>
+
+
+
+            </Grid>
+
+            <ListBox x:Name="BoardList" Background="#FF0078D7" BorderBrush="{x:Null}" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+
 
             </ListBox>
-        </Grid>
+
+
+        </DockPanel>
 
 
 
-        <Grid Grid.Column="1" Margin="166,0,-994,0" >
-            <boards:MiunskeG2/>
-        </Grid>
+
 
 
     </Grid>
+
+
 </Window>
