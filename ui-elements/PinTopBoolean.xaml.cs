@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MiunskeBoardProject.classes;
 
 namespace MiunskeBoardProject.ui_elements
 {
@@ -19,23 +20,57 @@ namespace MiunskeBoardProject.ui_elements
     public partial class PinTopBoolean : UserControl
     {
 
+        public int canAddress { get; set; }
+        public String canBit { get; set; }
+
+
         /// <summary>
         /// konstruktor elementu XAML odpowiadającego za pojedyńczą kolumnę widoku konektora
         /// </summary>
-        /// <param name="pinNumber">numer pina u góry kolumny</param>
-        public PinTopBoolean(int pinNumber)
+        /// <param name="pinNumber">numer pina do wyświetlenia u dołu kolumny</param>
+        /// <param name="canAddress">adres CAN na który ta kontrolka reaguje</param>
+        /// <param name="canBit">offsety bitu z którego jest czytana i wyświetlana wartość</param>
+        public PinTopBoolean(int pinNumber, int canAddress, String canBit)
         {
-            this.InitializeComponent();
+            InitializeComponent();
             PinNumberXAML.Text = pinNumber.ToString();
+            this.canAddress = canAddress;
+            this.canBit = canBit;
+            MainWindow.CANMessageEvent += new EventHandler<CANMessage>(can_event_update_pin);
         }
 
-        public PinTopBoolean()
+
+        /// <summary>
+        /// Subskrybent zdarzenia przesyłania wiadomości CAN w MainWindow
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="message">wiadomość CAN</param>
+        private void can_event_update_pin(object sender, CANMessage message)
         {
-            this.InitializeComponent();
+            if (message.address != canAddress)
+                return;
+
+            if (canBit.Contains('-'))
+            {
+                MessageBox.Show("Pin logiczny zawiera w konfiguracji wartość " + canBit + " proszę podać jednocyfrową wartość value");
+                Environment.Exit(0);
+            }
+
+            int arrayOffset = int.Parse(canBit.ToString()) / 8;
+            string binData = Convert.ToString(message.aby_data[arrayOffset], 2).PadLeft(8, '0');
+            int index = int.Parse(canBit.ToString()) % 8;
+            int newValue = Convert.ToInt32(binData.Substring(index, 1));
+
+
+            SolidColorBrush ellipseColor = new SolidColorBrush();
+            ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
+            BooleanEllipseXAML.Fill = ellipseColor;
         }
 
 
-        public void updatePinValue(bool newPinValue)
+
+
+        /*public void updatePinValue(bool newPinValue)
         {
             SolidColorBrush ellipseColor = new SolidColorBrush();
             ellipseColor.Color = (newPinValue) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
@@ -67,5 +102,6 @@ namespace MiunskeBoardProject.ui_elements
             }
 
         }
+    }*/
     }
 }

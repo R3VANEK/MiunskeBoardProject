@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MiunskeBoardProject.classes;
 
 namespace MiunskeBoardProject.ui_elements
 {
@@ -18,41 +19,55 @@ namespace MiunskeBoardProject.ui_elements
     /// </summary>
     public partial class PinBottomValue : UserControl
     {
+
+        public int canAddress { get; set; }
+        public String canBit { get; set; }
+
+
         /// <summary>
         /// konstruktor elementu XAML odpowiadającego za pojedyńczą kolumnę widoku konektora
         /// </summary>
-        /// <param name="pinNumber">numer pina u dołu kolumny</param>
-        public PinBottomValue(int pinNumber)
+        /// <param name="pinNumber">numer pina do wyświetlenia u dołu kolumny</param>
+        /// <param name="canAddress">adres CAN na który ta kontrolka reaguje</param>
+        /// <param name="canBit">offsety bitu z którego jest czytana i wyświetlana wartość</param>
+        public PinBottomValue(int pinNumber, int canAddress, String canBit)
         {
             InitializeComponent();
             PinNumberXAML.Text = pinNumber.ToString();
+            this.canAddress = canAddress;
+            this.canBit = canBit;
+            MainWindow.CANMessageEvent += new EventHandler<CANMessage>(can_event_update_pin);
         }
 
-        public void updatePinValue(int newPinValue)
+        /// <summary>
+        /// Subskrybent zdarzenia przesyłania wiadomości CAN w MainWindow
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="message">wiadomość CAN</param>
+        private void can_event_update_pin(object sender, CANMessage message)
         {
-            PinNumberXAML.Text = newPinValue.ToString();
-            PinNumberXAML.UpdateLayout();
-        }
 
-        private void updatePinValue(object sender, bool pinValue, int pinNumber)
-        {
-            // każda kolumna subskrybuje ten sam event więc potrzebne jest sprawdzenie czy podany pinNumber znajduje się w kolumnie XAML
-            // jeżeli kod przejdzie ten warunek pomyślnie to znaczy, że ta konkretna kolumna musi uaktualnić dane
-            if (!(PinNumberXAML.Text.Equals(pinNumber.ToString()) || PinNumberXAML.Text.Equals(pinNumber.ToString())))
-            {
+            if (message.address != canAddress)
                 return;
-            }
 
-            SolidColorBrush ellipseColor = new SolidColorBrush();
-            ellipseColor.Color = (pinValue) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
-
-
-            // "górny" pin w kolumnie, trzeba uaktualnić kolor górnej kulki
-            if (PinNumberXAML.Text.Equals(pinNumber.ToString()))
+            int arrayOffset;
+            int newValue;
+            if (canBit.Contains('-'))
             {
-                // dopisywanie wartoścido PinValueXAML?
+                arrayOffset = int.Parse(canBit.Split('-')[0].ToString()) / 8;
+                newValue = message.aby_data[arrayOffset];
+            }
+            else
+            {
+                arrayOffset = int.Parse(canBit.ToString()) / 8;
+                string binData = Convert.ToString(message.aby_data[arrayOffset], 2).PadLeft(8, '0');
+                int index = int.Parse(canBit.ToString()) % 8;
+                newValue = Convert.ToInt32(binData.Substring(index, 1));
+
             }
 
+            PinValueXAML.Text = newValue.ToString();
         }
+
     }
 }

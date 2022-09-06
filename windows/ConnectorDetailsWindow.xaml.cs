@@ -97,52 +97,32 @@ namespace MiunskeBoardProject
                 
                 if(pinParam.Type == "boolean")
                 {
-                    PinTopBoolean ptb = new PinTopBoolean(pinParam.Pin);
-                    pinParam.XamlControl = ptb;
-                    //this.pinTopBooleans.Add(ptb);
-
-
-                    //this.pinXAMLControls.Add(ptb);
+                    PinTopBoolean ptb = new PinTopBoolean(pinParam.Pin, pinParam.CanAddress, pinParam.CanBits);
                     columnHolderPanel.Children.Add(ptb);
                 }
                 else if(pinParam.Type == "value")
                 {
-                    PinTopValue ptv = new PinTopValue(pinParam.Pin);
-                    pinParam.XamlControl = ptv;
-                    //this.pinTopValues.Add(ptv);
-                    //this.pinXAMLControls.Add(ptv);
+                    PinTopValue ptv = new PinTopValue(pinParam.Pin, pinParam.CanAddress, pinParam.CanBits);
                     columnHolderPanel.Children.Add(ptv);
                 }
 
 
                 if(pinParam1.Type == "boolean")
                 {
-                    PinBottomBoolean pbb = new PinBottomBoolean(pinParam1.Pin);
-                    pinParam1.XamlControl = pbb;
-                    //this.pinBottomBooleans.Add(pbb);
-                    //this.pinXAMLControls.Add(pbb);
-
+                    PinBottomBoolean pbb = new PinBottomBoolean(pinParam1.Pin, pinParam.CanAddress, pinParam.CanBits);
                     columnHolderPanel.Children.Add(pbb);
                 }
                 else if(pinParam1.Type == "value")
                 {
-                    PinBottomValue pbv = new PinBottomValue(pinParam1.Pin);
+                    PinBottomValue pbv = new PinBottomValue(pinParam1.Pin, pinParam.CanAddress, pinParam.CanBits);
                     pinParam1.XamlControl = pbv;
-                    // this.pinXAMLControls.Add(pbv);
-
                     columnHolderPanel.Children.Add(pbv);
                 }
 
                 ConnectorHolderXAML.Children.Add(columnHolderPanel);
                
             }
-
-
             ConnectorHolderXAML.Children.Add(new ConnectorColumnSpecial());
-
-            MiunskeG2.CANMessageEvent += MiunskeG2_CANMessageEvent; 
-
-            
         }
 
 
@@ -153,7 +133,7 @@ namespace MiunskeBoardProject
         /// </summary>
         /// <param name="sender">obiekt wyzwalający event</param>
         /// <param name="message">wiadomość CAN</param>
-        private void MiunskeG2_CANMessageEvent(object sender, CANMessage message)
+       /* private void MiunskeG2_CANMessageEvent(object sender, CANMessage message)
         {
             //System.Diagnostics.Trace.WriteLine("can message " + e + " read in details window");
             // zgodnie z jsonem rozdysponuj plusy i minusy
@@ -235,7 +215,7 @@ namespace MiunskeBoardProject
 
 
 
-        }
+        }*/
 
         
 

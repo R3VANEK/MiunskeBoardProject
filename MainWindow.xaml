@@ -40,23 +40,32 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="80*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="75*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0">
-            
+        <DockPanel Grid.Row="0">
+            <Button Content="Odbieraj wiadomości CAN" Width="205" Background="#FF53D4A5" BorderBrush="{x:Null}" Foreground="White" ClipToBounds="True" Margin="0,0,50,0" FontSize="15" HorizontalAlignment="Right" x:Name="canButton"/>
+        </DockPanel>
+
+        <StackPanel Grid.Row="1" x:Name="boardHolder" VerticalAlignment="Center" Height="500" Width="1000">
+            <boards:MiunskeG2/>
+
         </StackPanel>
 
 
-        <DockPanel LastChildFill="False" Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" Grid.Row="1"  HorizontalAlignment="Stretch">
+        <DockPanel LastChildFill="False" Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" Grid.Row="2"  HorizontalAlignment="Stretch">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80*"/>
                 </Grid.ColumnDefinitions>
-                
-                
+
+
 
             </Grid>
 
@@ -66,15 +75,13 @@
                         <StackPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                
+
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="Margin" Value="5"/>
                         <Setter Property="Padding" Value="10"/>
                         <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <!-- For setting height of control-->
-                       
-                        <!-- For setting widthof control-->
+                        <Setter Property="FontSize" Value="15"/>
                     </Style>
                 </ListBox.ItemContainerStyle>
 
@@ -91,6 +98,6 @@
 
 
     </Grid>
-    
-    
+
+
 </Window>
