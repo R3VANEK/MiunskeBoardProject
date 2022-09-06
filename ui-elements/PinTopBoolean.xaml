@@ -45,7 +45,7 @@
 
     
         <StackPanel Orientation="Vertical">
-        <Ellipse x:Name="BooleanEllipseXAML" Width="25" Height="25" Fill="green" Margin="0,10,0,10"/>
+        <Ellipse x:Name="BooleanEllipseXAML" Width="25" Height="25" Fill="gray" Margin="0,10,0,10"/>
         <Border BorderBrush="Black" BorderThickness="1">
                 <StackPanel Orientation="Vertical" Style="{StaticResource Column}">
                     <TextBlock x:Name="PinNumberXAML">7</TextBlock>

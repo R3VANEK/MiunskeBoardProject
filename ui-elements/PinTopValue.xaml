@@ -44,7 +44,7 @@
 
 
     <StackPanel Orientation="Vertical">
-        <TextBlock x:Name="PinValueXAML" HorizontalAlignment="Center" Margin="0,19,0,10">255</TextBlock>
+        <TextBlock x:Name="PinValueXAML" HorizontalAlignment="Center" Margin="0,19,0,10">-</TextBlock>
         <Border BorderBrush="Black" BorderThickness="1">
             <StackPanel Orientation="Vertical" Style="{StaticResource Column}">
                 <TextBlock x:Name="PinNumberXAML">8</TextBlock>

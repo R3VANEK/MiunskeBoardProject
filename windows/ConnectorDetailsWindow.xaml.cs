@@ -109,12 +109,12 @@ namespace MiunskeBoardProject
 
                 if(pinParam1.Type == "boolean")
                 {
-                    PinBottomBoolean pbb = new PinBottomBoolean(pinParam1.Pin, pinParam.CanAddress, pinParam.CanBits);
+                    PinBottomBoolean pbb = new PinBottomBoolean(pinParam1.Pin, pinParam1.CanAddress, pinParam1.CanBits);
                     columnHolderPanel.Children.Add(pbb);
                 }
                 else if(pinParam1.Type == "value")
                 {
-                    PinBottomValue pbv = new PinBottomValue(pinParam1.Pin, pinParam.CanAddress, pinParam.CanBits);
+                    PinBottomValue pbv = new PinBottomValue(pinParam1.Pin, pinParam1.CanAddress, pinParam1.CanBits);
                     pinParam1.XamlControl = pbv;
                     columnHolderPanel.Children.Add(pbv);
                 }

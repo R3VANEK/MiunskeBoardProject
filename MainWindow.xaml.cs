@@ -63,8 +63,6 @@ namespace MiunskeBoardProject
                 return;
 
             boardHolder.Children.Add(new boards.MiunskeG2());
-
-
             MessageBox.Show("jest");
         }
 
