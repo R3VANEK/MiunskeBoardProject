@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.IO;
 using MiunskeBoardProject.classes;
+using System.Runtime.InteropServices;
+
+
 
 namespace MiunskeBoardProject
 {
@@ -30,6 +33,10 @@ namespace MiunskeBoardProject
     public partial class MainWindow : Window
     {
 
+       
+
+        //[DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        //public unsafe static extern long canOpen(long l_netnumber, long l_mode, long l_echoon, long l_txtimeout, long l_rxtimeout, char* c_ApplicationName, char* c_ReceiverEvent, char* c_ErrorEvent, void** handle);
 
         public static event EventHandler<CANMessage> CANMessageEvent;
 
@@ -75,6 +82,11 @@ namespace MiunskeBoardProject
         {
             // tutaj logika połączenia się z biblioteką can
             // wiadomości czy się udało itp
+
+           // canOpen(105, 0, 0, 4000, 4000, "test", "R1", "E1", &MAINHANDLER)
+
+
+
             MessageBox.Show("przesyłanie wiadomości CAN");
             simulateCANMessages(205,8);
             simulateCANMessages(203, 8);
