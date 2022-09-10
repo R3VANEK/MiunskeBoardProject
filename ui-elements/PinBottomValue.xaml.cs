@@ -36,15 +36,46 @@ namespace MiunskeBoardProject.ui_elements
             PinNumberXAML.Text = pinNumber.ToString();
             this.canAddress = canAddress;
             this.canBit = canBit;
-            MainWindow.CANMessageEvent += new EventHandler<CANMessage>(can_event_update_pin);
+            //MainWindow.CANMessageEvent += new EventHandler<CANMessage>(can_event_update_pin);
+            MainWindow.Event_RxCanMessage += new EventHandler<CanFoxRxEventArg>(test);
         }
+
+
+
+        private void test(object sender, CanFoxRxEventArg e)
+        {
+            CANMessages msgs = e.CopyOfRxMessages((int)canAddress);
+
+            if (msgs.Count < 1 || msgs.Equals(null))
+                return;
+
+            foreach (CANMessage msg in msgs)
+            {
+                int arrayOffset;
+                int newValue;
+                if (canBit.Contains('-'))
+                {
+                    arrayOffset = int.Parse(canBit.Split('-')[0].ToString()) / 8;
+                    newValue = msg.data[arrayOffset];
+                }
+                else
+                {
+                    arrayOffset = int.Parse(canBit.ToString()) / 8;
+                    string binData = Convert.ToString(msg.data[arrayOffset], 2).PadLeft(8, '0');
+                    int index = int.Parse(canBit.ToString()) % 8;
+                    newValue = Convert.ToInt32(binData.Substring(index, 1));
+                }
+                PinValueXAML.Text = newValue.ToString();
+            }
+        }
+
 
         /// <summary>
         /// Subskrybent zdarzenia przesyłania wiadomości CAN w MainWindow
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="message">wiadomość CAN</param>
-        private void can_event_update_pin(object sender, CANMessage message)
+        /*private void can_event_update_pin(object sender, CANMessage message)
         {
 
             if (message.address != canAddress)
@@ -67,7 +98,7 @@ namespace MiunskeBoardProject.ui_elements
             }
 
             PinValueXAML.Text = newValue.ToString();
-        }
+        }*/
 
     }
 }
