@@ -23,6 +23,8 @@ namespace MiunskeBoardProject.ui_elements
         public int canAddress { get; set; }
         public String canBit { get; set; }
 
+        private DependencyObject depTest { get; set; }
+
 
         /// <summary>
         /// konstruktor elementu XAML odpowiadającego za pojedyńczą kolumnę widoku konektora
@@ -36,6 +38,9 @@ namespace MiunskeBoardProject.ui_elements
             PinNumberXAML.Text = pinNumber.ToString();
             this.canAddress = canAddress;
             this.canBit = canBit;
+
+            depTest = (DependencyObject)BooleanEllipseXAML;
+
             //MainWindow.CANMessageEvent += new EventHandler<CANMessage>(can_event_update_pin);
             MainWindow.Event_RxCanMessage += new EventHandler<CanFoxRxEventArg>(test);
         }
@@ -63,9 +68,20 @@ namespace MiunskeBoardProject.ui_elements
                 int newValue = Convert.ToInt32(binData.Substring(index, 1));
 
 
-                SolidColorBrush ellipseColor = new SolidColorBrush();
-                ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
-                BooleanEllipseXAML.Fill = ellipseColor;
+               
+                //depTest.Dispatcher.BeginInvoke(new System.Action(() => { this.SetValue() }));
+
+
+                BooleanEllipseXAML.Dispatcher.Invoke(() =>
+                {
+                    SolidColorBrush ellipseColor = new SolidColorBrush();
+                    ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
+                    ellipseColor.Freeze();
+                    BooleanEllipseXAML.Fill = new SolidColorBrush(ellipseColor.Color);
+                });
+
+              
+               
             }
         }
 

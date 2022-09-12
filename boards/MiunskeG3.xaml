@@ -12,13 +12,13 @@
         <base:ConnectorControl base:ConnectorControl.PinsProperty="4" x:Name="DX7" Source="../images/pieces/connector4Rotate.png" Cursor="Hand" Canvas.Left="705" Canvas.Top="99" Height="101" Width="53"  />
         <base:ConnectorControl base:ConnectorControl.PinsProperty="5" x:Name="DX6" Source="../images/pieces/connector5Rotate.png" Cursor="Hand" Canvas.Left="705" Canvas.Top="192" Height="105" Width="52"/>
         <base:ConnectorControl base:ConnectorControl.PinsProperty="9" x:Name="DX5" Source="../images/pieces/connector9Rotate.png" Cursor="Hand" Canvas.Left="528" Canvas.Top="364" Height="44" RenderTransformOrigin="0.524,1.329"/>
-        <base:ConnectorControl base:ConnectorControl.PinsProperty="6" x:Name="DX4" Source="../images/pieces/connector6Rotate.png" Cursor="Hand" Canvas.Left="467" Canvas.Top="206" Height="48" RenderTransformOrigin="0.5,0.5" >
+        <base:ConnectorControl base:ConnectorControl.PinsProperty="6" x:Name="DX4" Source="../images/pieces/connector6Rotate.png" Cursor="Hand" Canvas.Left="232" Canvas.Top="36" Height="48" RenderTransformOrigin="0.633,1.025" >
             <base:ConnectorControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform AngleX="-0.959"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.535"/>
+                    <RotateTransform Angle="1067.561"/>
+                    <TranslateTransform X="-0.957"/>
                 </TransformGroup>
             </base:ConnectorControl.RenderTransform>
         </base:ConnectorControl>

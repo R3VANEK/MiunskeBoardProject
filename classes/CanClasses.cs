@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Timers;
 
 namespace MiunskeBoardProject.classes
@@ -492,8 +491,7 @@ namespace MiunskeBoardProject.classes
 
         public ErrorCode openCan()
         {
-            try
-            {
+            
                 IntPtr phandle = Marshal.AllocHGlobal(IntPtr.Size);
 
                 _lastreturn = canOpen(_l_netnumber,
@@ -524,8 +522,8 @@ namespace MiunskeBoardProject.classes
 
                 startRxTimer();
 
-            }
-            catch { return ErrorCode.NTCAN_ERROR_UNDEFINDE }
+            
+            
             return LastReturn;
         }
 

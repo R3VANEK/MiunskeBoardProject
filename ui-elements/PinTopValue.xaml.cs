@@ -63,7 +63,12 @@ namespace MiunskeBoardProject.ui_elements
                     int index = int.Parse(canBit.ToString()) % 8;
                     newValue = Convert.ToInt32(binData.Substring(index, 1));
                 }
-                PinValueXAML.Text = newValue.ToString();
+               
+
+                PinValueXAML.Dispatcher.Invoke(() =>
+                {
+                    PinValueXAML.Text = newValue.ToString();
+                });
             }
         }
 

@@ -4,125 +4,125 @@
     {
       "name": "DX2",
       "pins": 22,
-      "can-addresses": [205, 210, 211],
+      "can-addresses": [0x205, 0x210, 0x211],
       "pins-parameters": [
         {
           "pin": 5,
-          "can-address": 210,
+          "can-address": 0x210,
           "type": "value",
           "can-bits": "0-7"
         },
         {
           "pin": 6,
-          "can-address": 210,
+          "can-address": 0x210,
           "type": "value",
           "can-bits": "8-15"
         },
         {
           "pin": 7,
-          "can-address": 210,
+          "can-address": 0x210,
           "type": "value",
           "can-bits": "16-23"
         },
         {
           "pin": 8,
-          "can-address": 210,
+          "can-address": 0x210,
           "type": "value",
           "can-bits": "24-31"
         },
         {
           "pin": 9,
-          "can-address": 210,
+          "can-address": 0x210,
           "type": "value",
           "can-bits": "32-39"
         },
         {
           "pin": 10,
-          "can-address": 210,
+          "can-address": 0x210,
           "type": "value",
           "can-bits": "40-47"
         },
         {
           "pin": 11,
-          "can-address": 210,
+          "can-address": 0x210,
           "type": "value",
           "can-bits": "48-55"
         },
         {
           "pin": 12,
-          "can-address": 210,
+          "can-address": 0x210,
           "type": "value",
           "can-bits": "56-63"
         },
         {
           "pin": 13,
-          "can-address": 211,
+          "can-address": 0x211,
           "type": "value",
           "can-bits": "0-7"
         },
         {
           "pin": 14,
-          "can-address": 211,
+          "can-address": 0x211,
           "type": "value",
           "can-bits": "8-15"
         },
         {
           "pin": 16,
-          "can-address": 211,
+          "can-address": 0x211,
           "type": "value",
           "can-bits": "16-23"
         },
         {
           "pin": 17,
-          "can-address": 211,
+          "can-address": 0x211,
           "type": "value",
           "can-bits": "24-31"
         },
         {
           "pin": 19,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "value",
           "can-bits": "5"
         },
         {
           "pin": 20,
-          "can-address": 211,
+          "can-address": 0x211,
           "type": "value",
           "can-bits": "32-39"
         },
         {
           "pin": 21,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "value",
           "can-bits": "6"
         },
         {
           "pin": 1,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "0"
         },
         {
           "pin": 3,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "1"
         },
         {
           "pin": 4,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "2"
         },
         {
           "pin": 15,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "3"
         },
         {
           "pin": 18,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "4"
         }
@@ -131,65 +131,65 @@
     {
       "name": "DX4",
       "pins": 12,
-      "can-addresses": [ 205, 211 ],
+      "can-addresses": [ 0x205, 0x211 ],
       "pins-parameters": [
         {
           "pin": 3,
           "type": "value",
-          "can-address": 211,
+          "can-address": 0x211,
           "can-bits": "40-47"
         },
         {
           "pin": 11,
           "type": "value",
-          "can-address": 211,
+          "can-address": 0x211,
           "can-bits": "48-55"
         },
         {
           "pin": 1,
-          "can-address" :  205,
+          "can-address" :  0x205,
           "type": "boolean",
           "can-bits": "7"
         },
         {
           "pin": 2,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "8"
         },
         {
           "pin": 4,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "9"
         },
         {
           "pin": 6,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "10"
         },
         {
           "pin": 7,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "11"
         },
         {
           "pin": 8,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "12"
         },
         {
           "pin": 9,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "13"
         },
         {
           "pin": 10,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "14"
         }
@@ -198,65 +198,77 @@
     {
       "name": "DX5",
       "pins": 18,
-      "can-addresses": [ 205, 202 ],
+      "can-addresses": [ 0x205, 0x202, 0x200 ],
       "pins-parameters": [
         {
           "pin": 3,
-          "can-address": 202,
+          "can-address": 0x202,
           "type": "value",
           "can-bits": "24-31"
         },
         {
+          "pin": 2,
+          "can-address": 0x200,
+          "type": "boolean",
+          "can-bits": "5"
+        },
+        {
           "pin": 1,
-          "can-address": 205,
+          "can-address": 0x205,
+          "type": "boolean",
+          "can-bits": "15"
+        },
+        {
+          "pin": 7,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "15"
         },
         {
           "pin": 10,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "16"
         },
         {
           "pin": 11,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "17"
         },
         {
           "pin": 12,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "18"
         },
         {
           "pin": 14,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "20"
         },
         {
           "pin": 15,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "21"
         },
         {
           "pin": 16,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "22"
         },
         {
           "pin": 17,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "23"
         },
         {
           "pin": 18,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "24"
         }
@@ -265,35 +277,35 @@
     {
       "name": "DX6",
       "pins": 10,
-      "can-addresses": [ 205, 203 ],
+      "can-addresses": [ 0x205, 0x203 ],
       "pins-parameters": [
         {
           "pin": 6,
-          "can-address": 203,
+          "can-address": 0x203,
           "type": "value",
           "can-bits": "0-7"
         },
         {
           "pin": 7,
-          "can-address": 203,
+          "can-address": 0x203,
           "type": "value",
           "can-bits": "8-15"
         },
         {
           "pin": 8,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "25"
         },
         {
           "pin": 9,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "26"
         },
         {
           "pin": 10,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "27"
         }
@@ -302,89 +314,89 @@
     {
       "name": "DX3",
       "pins": 14,
-      "can-addresses": [ 205 ],
+      "can-addresses": [ 0x205 ],
       "pins-parameters": [
         {
           "pin": 1,
-          "can-address":  205,
+          "can-address":  0x205,
           "type": "boolean",
           "can-bits": "28"
         },
         {
           "pin": 2,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "31"
         },
         {
           "pin": 3,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "29"
         },
         {
           "pin": 4,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "30"
         },
         {
           "pin": 5,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "32"
         },
         {
           "pin": 6,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "33"
         },
         {
           "pin": 7,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "34"
         },
         {
           "pin": 8,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "35"
         },
         {
           "pin": 9,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "36"
         },
         {
           "pin": 10,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "37"
         },
         {
           "pin": 11,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "38"
         },
         {
           "pin": 12,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "39"
         },
         {
           "pin": 13,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "40"
         },
         {
           "pin": 14,
-          "can-address": 205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "41"
         }

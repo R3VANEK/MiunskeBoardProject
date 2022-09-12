@@ -64,9 +64,14 @@ namespace MiunskeBoardProject.ui_elements
                 int newValue = Convert.ToInt32(binData.Substring(index, 1));
 
 
-                SolidColorBrush ellipseColor = new SolidColorBrush();
-                ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
-                BooleanEllipseXAML.Fill = ellipseColor;
+                BooleanEllipseXAML.Dispatcher.Invoke(() =>
+                {
+                    SolidColorBrush ellipseColor = new SolidColorBrush();
+                    ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
+                    ellipseColor.Freeze();
+                    BooleanEllipseXAML.Fill = new SolidColorBrush(ellipseColor.Color);
+                });
+
             }
         }
 
