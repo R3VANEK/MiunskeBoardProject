@@ -56,9 +56,11 @@ namespace MiunskeBoardProject.boards
             {
                 jsonParser = new JsonParser(configFileName);
             }
-            catch(JsonSerializationException e)
+            catch(Exception e)
             {
                 MessageBox.Show(e.Message);
+                MessageBox.Show("Prosimy naprawić wsykakujący błąd zanim będzie można używać programu");
+                Environment.Exit(0);
             }
             
             

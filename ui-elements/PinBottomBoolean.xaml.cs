@@ -37,24 +37,22 @@ namespace MiunskeBoardProject.ui_elements
             PinNumberXAML.Text = pinNumber.ToString();
             this.canAddress = canAddress;
             this.canBit = canBit;
-            MainWindow.Event_RxCanMessage += new EventHandler<CanFoxRxEventArg>(test);
-            //MainWindow.CANMessageEvent += new EventHandler<CANMessage>(can_event_update_pin);
+            MainWindow.Event_RxCanMessage += new EventHandler<CanFoxRxEventArg>(can_event_update_pin);
+            
         }
 
 
-        private void test(object sender, CanFoxRxEventArg e)
+        /// <summary>
+        /// Subskrybent zdarzenia przesyłania wiadomości CAN w MainWindow
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="message">wiadomość CAN</param>
+        private void can_event_update_pin(object sender, CanFoxRxEventArg e)
         {
             CANMessages msgs = e.CopyOfRxMessages((int)canAddress);
 
             if (msgs.Count < 1 || msgs.Equals(null))
                 return;
-
-            if (canBit.Contains('-'))
-            {
-                MessageBox.Show("Pin logiczny zawiera w konfiguracji wartość " + canBit + " proszę podać jednocyfrową wartość value");
-                Environment.Exit(0);
-            }
-
 
             foreach (CANMessage msg in msgs)
             {
@@ -74,43 +72,6 @@ namespace MiunskeBoardProject.ui_elements
 
             }
         }
-
-
-
-        /// <summary>
-        /// Subskrybent zdarzenia przesyłania wiadomości CAN w MainWindow
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="message">wiadomość CAN</param>
-        /*private void can_event_update_pin(object sender, CANMessage message)
-        {
-
-             
-
-            if (message.id != canAddress)
-                return;
-
-            if (canBit.Contains('-'))
-            {
-                MessageBox.Show("Pin logiczny zawiera w konfiguracji wartość " + canBit + " proszę podać jednocyfrową wartość value");
-                Environment.Exit(0);
-            }
-
-            int arrayOffset = int.Parse(canBit.ToString()) / 8;
-
-
-   
-
-
-            string binData = Convert.ToString(message.data[arrayOffset], 2).PadLeft(8, '0');
-            int index = int.Parse(canBit.ToString()) % 8;
-            int newValue = Convert.ToInt32(binData.Substring(index, 1));
-
-
-            SolidColorBrush ellipseColor = new SolidColorBrush();
-            ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
-            BooleanEllipseXAML.Fill = ellipseColor;
-        }*/
 
     }
 }

@@ -65,7 +65,10 @@ namespace MiunskeBoardProject.classes
 
            
             string raw = File.ReadAllText("../../../connector-configurations/" + fileName);
+
             Root config = JsonConvert.DeserializeObject<Root>(raw);
+           
+            
 
             if (config.Connectors == null)
                 throw new JsonSerializationException("źle sformatowana właściwość 'connectors' | plik : " + this.fileName);
@@ -90,7 +93,7 @@ namespace MiunskeBoardProject.classes
                     int try_parse_output = -1;
                     int.TryParse(pin.CanBits, out try_parse_output);
 
-                    //sprawdzanie typów?
+                    
                     if (pin.CanAddress == null || pin.CanAddress <= 0)
                         throw new JsonSerializationException("źle sformatowana właściwość 'can-address' w jednym z pinów " + connector.Name +" | plik : " + this.fileName);
 
@@ -102,6 +105,9 @@ namespace MiunskeBoardProject.classes
 
                     if (pin.CanBits == null || pin.CanBits == "" || !Regex.IsMatch(pin.CanBits, @"(^[0-9]{1,2}$)|(^[0-9]{1,2}[-][0-9]{1,2}$)"))
                         throw new JsonSerializationException("źle sformatowana właściwość 'can-bits' w jednym z pinów  " + connector.Name + " | plik : " + this.fileName);
+
+                    if (pin.Type == "boolean" && pin.CanBits.Contains("-"))
+                        throw new JsonSerializationException("Pin logiczny w " + connector.Name + " zawiera w konfiguracji wartość " + pin.CanBits + " proszę podać jednocyfrową wartość value" + " | plik : " + this.fileName);
                 }
             }
 

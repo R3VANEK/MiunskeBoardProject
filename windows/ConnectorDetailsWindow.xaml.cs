@@ -28,14 +28,7 @@ namespace MiunskeBoardProject
         private ConnectorControl ConnectorControl { get; set; }
         private Connector connectorConfig { get; set; }
 
-        private List<PinTopBoolean> pinTopBooleans { get; set; }
-        private List<PinBottomBoolean> pinBottomBooleans { get; set; }
-        
-        private List<PinTopValue> pinTopValues { get; set; }
-        private List<PinBottomValue> pinBottomValues { get; set; }
-
-        private List<UserControl> pinXAMLControls { get; set; }
-
+  
 
         protected static event EventHandler<CANMessage> CANMessageEvent;
 
@@ -51,11 +44,6 @@ namespace MiunskeBoardProject
         {
             InitializeComponent();
 
-            this.pinTopBooleans = new List<PinTopBoolean>();
-            this.pinBottomBooleans = new List<PinBottomBoolean>();
-            this.pinTopValues = new List<PinTopValue>();
-            this.pinBottomValues = new List<PinBottomValue>();
-            this.pinXAMLControls = new List<UserControl>();
 
             this.ConnectorControl = connector;
             connectorNameXAML.Text = "Connector " + this.ConnectorControl.Name;
@@ -83,8 +71,13 @@ namespace MiunskeBoardProject
             // konfiguracja dolnego pina
             PinsParameter pinParam1;
 
+
             connectorConfig.PinsParameters.Sort((x, y) => x.Pin.CompareTo(y.Pin));
 
+
+
+            if (connectorConfig.PinsParameters.Count % 2 != 0)
+                MessageBox.Show(connectorConfig.Name + " ma nieparzystą liczbę pinów w pliku konfiguracyjnym .json, z tego powodu niektóre piny mogą się nie pojawić graficznie");
 
             for(int i = connectorConfig.PinsParameters.Count-1; i > 0; i -= 2)
             {

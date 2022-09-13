@@ -38,51 +38,7 @@ namespace MiunskeBoardProject.ui_elements
             PinNumberXAML.Text = pinNumber.ToString();
             this.canAddress = canAddress;
             this.canBit = canBit;
-
-            depTest = (DependencyObject)BooleanEllipseXAML;
-
-            //MainWindow.CANMessageEvent += new EventHandler<CANMessage>(can_event_update_pin);
-            MainWindow.Event_RxCanMessage += new EventHandler<CanFoxRxEventArg>(test);
-        }
-
-
-        private void test(object sender, CanFoxRxEventArg e)
-        {
-            CANMessages msgs = e.CopyOfRxMessages((int)canAddress);
-
-            if (msgs.Count < 1 || msgs.Equals(null))
-                return;
-
-            if (canBit.Contains('-'))
-            {
-                MessageBox.Show("Pin logiczny zawiera w konfiguracji wartość " + canBit + " proszę podać jednocyfrową wartość value");
-                Environment.Exit(0);
-            }
-
-
-            foreach (CANMessage msg in msgs)
-            {
-                int arrayOffset = int.Parse(canBit.ToString()) / 8;
-                string binData = Convert.ToString(msg.data[arrayOffset], 2).PadLeft(8, '0');
-                int index = int.Parse(canBit.ToString()) % 8;
-                int newValue = Convert.ToInt32(binData.Substring(index, 1));
-
-
-               
-                //depTest.Dispatcher.BeginInvoke(new System.Action(() => { this.SetValue() }));
-
-
-                BooleanEllipseXAML.Dispatcher.Invoke(() =>
-                {
-                    SolidColorBrush ellipseColor = new SolidColorBrush();
-                    ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
-                    ellipseColor.Freeze();
-                    BooleanEllipseXAML.Fill = new SolidColorBrush(ellipseColor.Color);
-                });
-
-              
-               
-            }
+            MainWindow.Event_RxCanMessage += new EventHandler<CanFoxRxEventArg>(can_event_update_pin);
         }
 
 
@@ -92,63 +48,36 @@ namespace MiunskeBoardProject.ui_elements
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="message">wiadomość CAN</param>
-        /*private void can_event_update_pin(object sender, CANMessage message)
+        private void can_event_update_pin(object sender, CanFoxRxEventArg e)
         {
-            if (message.address != canAddress)
+            CANMessages msgs = e.CopyOfRxMessages((int)canAddress);
+
+            if (msgs.Count < 1 || msgs.Equals(null))
                 return;
 
-            if (canBit.Contains('-'))
+          
+            foreach (CANMessage msg in msgs)
             {
-                MessageBox.Show("Pin logiczny zawiera w konfiguracji wartość " + canBit + " proszę podać jednocyfrową wartość value");
-                Environment.Exit(0);
+                int arrayOffset = int.Parse(canBit.ToString()) / 8;
+                string binData = Convert.ToString(msg.data[arrayOffset], 2).PadLeft(8, '0');
+                int index = int.Parse(canBit.ToString()) % 8;
+                int newValue = Convert.ToInt32(binData.Substring(index, 1));
+
+
+                // uciszanie błędów ze względu na wyjście z aplikacji
+                // czasami użytkownik kliknie 'x' w momencie przygotowywania invoke i pojawi się błąd krytyczny zupełnie niepotrzebnie
+                try
+                {
+                    BooleanEllipseXAML.Dispatcher.Invoke(() =>
+                    {
+                        SolidColorBrush ellipseColor = new SolidColorBrush();
+                        ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
+                        ellipseColor.Freeze();
+                        BooleanEllipseXAML.Fill = new SolidColorBrush(ellipseColor.Color);
+                    });
+                }
+                catch (Exception e1) { }
             }
-
-            int arrayOffset = int.Parse(canBit.ToString()) / 8;
-            string binData = Convert.ToString(message.aby_data[arrayOffset], 2).PadLeft(8, '0');
-            int index = int.Parse(canBit.ToString()) % 8;
-            int newValue = Convert.ToInt32(binData.Substring(index, 1));
-
-
-            SolidColorBrush ellipseColor = new SolidColorBrush();
-            ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
-            BooleanEllipseXAML.Fill = ellipseColor;
-        }*/
-
-
-
-
-        /*public void updatePinValue(bool newPinValue)
-        {
-            SolidColorBrush ellipseColor = new SolidColorBrush();
-            ellipseColor.Color = (newPinValue) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
-            BooleanEllipseXAML.Fill = ellipseColor;
-            BooleanEllipseXAML.UpdateLayout();
         }
-
-        //potrzebuje wiedziec wartość boolean
-        // potrzebuje wiedzieć wartość numer dokładny pina
-
-
-        private void updatePinValue(object sender, bool pinValue, int pinNumber)
-        {
-            // każda kolumna subskrybuje ten sam event więc potrzebne jest sprawdzenie czy podany pinNumber znajduje się w kolumnie XAML
-            // jeżeli kod przejdzie ten warunek pomyślnie to znaczy, że ta konkretna kolumna musi uaktualnić dane
-            if (!(PinNumberXAML.Text.Equals(pinNumber.ToString()) || PinNumberXAML.Text.Equals(pinNumber.ToString())))
-            {
-                return;
-            }
-
-            SolidColorBrush ellipseColor = new SolidColorBrush();
-            ellipseColor.Color = (pinValue) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
-
-
-            // "górny" pin w kolumnie, trzeba uaktualnić kolor górnej kulki
-            if (PinNumberXAML.Text.Equals(pinNumber.ToString()))
-            {
-                BooleanEllipseXAML.Fill = ellipseColor;
-            }
-
-        }
-    }*/
     }
 }

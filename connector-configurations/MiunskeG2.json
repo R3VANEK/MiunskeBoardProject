@@ -313,12 +313,12 @@
     },
     {
       "name": "DX3",
-      "pins": 14,
+      "pins": 15,
       "can-addresses": [ 0x205 ],
       "pins-parameters": [
         {
           "pin": 1,
-          "can-address":  0x205,
+          "can-address": 0x205,
           "type": "boolean",
           "can-bits": "28"
         },
@@ -399,6 +399,12 @@
           "can-address": 0x205,
           "type": "boolean",
           "can-bits": "41"
+        },
+        {
+          "pin": 15,
+          "can-address": "0x205",
+          "type": "boolean",
+          "can-bits": "42"
         }
       ]
     }
