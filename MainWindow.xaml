@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:MiunskeBoardProject" xmlns:Image="clr-namespace:MiunskeBoardProject.base_models"
         mc:Ignorable="d"
 
-        Title="MainWindow" Height="750" Width="1300">
+        Title="Okno główne" Height="750" Width="1300">
 
     <Window.Resources>
         <ResourceDictionary>

@@ -5,33 +5,44 @@ using System.Text;
 
 namespace MiunskeBoardProject.classes
 {
-    public class ConnectorJSON
+
+    public class Root
+    {
+        [JsonProperty("connectors")]
+        public List<Connector> Connectors { get; set; }
+    }
+
+    public class Connector
     {
         [JsonProperty("name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty("pins")]
-        public int pins { get; set; }
+        public int Pins { get; set; }
+
+        [JsonProperty("can-addresses")]
+        public List<int> CanAddresses { get; set; }
+
+        [JsonProperty("pins-parameters")]
+        public List<PinsParameter> PinsParameters { get; set; }
+
+    }
+
+    public class PinsParameter
+    {
+        [JsonProperty("pin")]
+        public int Pin { get; set; }
 
         [JsonProperty("can-address")]
         public int CanAddress { get; set; }
 
-        [JsonProperty("pins-parameters")]
-        public List<PinsParameterJSON> PinsParameters { get; set; }
-    }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
-    public class PinsParameterJSON
-    {
-        [JsonProperty("pin")]
-        public int pin { get; set; }
+        [JsonProperty("can-bits")]
+        public string CanBits { get; set; }
 
-        [JsonProperty("can-bit")]
-        public int CanBit { get; set; }
-    }
+        public System.Windows.Controls.UserControl XamlControl { get; set; }
 
-    public class RootJson
-    {
-        [JsonProperty("connectors")]
-        public List<ConnectorJSON> connectors { get; set; }
     }
 }

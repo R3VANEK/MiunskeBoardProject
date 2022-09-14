@@ -61,14 +61,19 @@ namespace MiunskeBoardProject.ui_elements
                 int index = int.Parse(canBit.ToString()) % 8;
                 int newValue = Convert.ToInt32(binData.Substring(index, 1));
 
-
-                BooleanEllipseXAML.Dispatcher.Invoke(() =>
+                // uciszanie błędów ze względu na wyjście z aplikacji
+                // czasami użytkownik kliknie 'x' w momencie przygotowywania invoke i pojawi się błąd krytyczny zupełnie niepotrzebnie
+                try
                 {
-                    SolidColorBrush ellipseColor = new SolidColorBrush();
-                    ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
-                    ellipseColor.Freeze();
-                    BooleanEllipseXAML.Fill = new SolidColorBrush(ellipseColor.Color);
-                });
+                    BooleanEllipseXAML.Dispatcher.Invoke(() =>
+                    {
+                        SolidColorBrush ellipseColor = new SolidColorBrush();
+                        ellipseColor.Color = (newValue > 0) ? Color.FromRgb(0, 255, 0) : Color.FromRgb(255, 0, 0);
+                        ellipseColor.Freeze();
+                        BooleanEllipseXAML.Fill = new SolidColorBrush(ellipseColor.Color);
+                    });
+                }
+                catch(Exception e1) { }
 
             }
         }

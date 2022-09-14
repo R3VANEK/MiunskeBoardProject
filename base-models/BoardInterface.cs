@@ -12,7 +12,7 @@ using System.IO;
 namespace MiunskeBoardProject.base_models
 {
     /// <summary>
-    ///     Zawiera metody niezbędne do symulowania płyt Miunske
+    ///     Zawiera metody niezbędne do symulowania płytek
     /// </summary>
     interface BoardInterface
     {
@@ -28,12 +28,7 @@ namespace MiunskeBoardProject.base_models
         {
 
             ConnectorControl connector = (ConnectorControl)sender;
-            double numberOfPins = connector.Pins;
-
-            if (numberOfPins == 0)
-            {
-                //TODO: Wywal aplikacje bo to błąd krytyczny albo pomiń
-            }
+           
 
             ConnectorDetailsWindow cw = new ConnectorDetailsWindow(connector, configInfo, configFileName);
             cw.ShowInTaskbar = false;

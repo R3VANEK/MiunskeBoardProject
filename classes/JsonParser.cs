@@ -7,49 +7,6 @@ using System.Text.RegularExpressions;
 
 namespace MiunskeBoardProject.classes
 {
-
-    public class Root
-    {
-        [JsonProperty("connectors")]
-        public List<Connector> Connectors { get; set; }
-    }
-
-    public class Connector
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("pins")]
-        public int Pins { get; set; }
-
-        [JsonProperty("can-addresses")]
-        public List<int> CanAddresses { get; set; }
-
-        [JsonProperty("pins-parameters")]
-        public List<PinsParameter> PinsParameters { get; set; }
-
-    }
-
-    public class PinsParameter
-    {
-        [JsonProperty("pin")]
-        public int Pin { get; set; }
-
-        [JsonProperty("can-address")]
-        public int CanAddress { get; set; }
-
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        [JsonProperty("can-bits")]
-        public string CanBits { get; set; }
-
-        public System.Windows.Controls.UserControl XamlControl { get; set; }
-
-    }
-
-
-
     class JsonParser
     {
         private string fileName { get; }
@@ -79,12 +36,6 @@ namespace MiunskeBoardProject.classes
                 if (connector.Name == null || connector.Name == "")
                     throw new JsonSerializationException("źle sformatowana właściwość 'name' w jednym z konektorów | plik : " + this.fileName);
 
-                if (connector.CanAddresses.Count == null || connector.CanAddresses.Count == 0)
-                    throw new JsonSerializationException("źle sformatowana właściwość 'can-addresses' w jednym z konektorów | plik : " + this.fileName);
-
-                if (connector.Pins == null || connector.Pins <= 0)
-                    throw new JsonSerializationException("źle sformatowana właściwość 'pins' w jednym z konektorów | plik : " + this.fileName);
-
                 if (connector.PinsParameters == null || connector.PinsParameters.Count == 0)
                     throw new JsonSerializationException("źle sformatowana właściwość 'pins-parameters' w jednym z konektorów | plik : " + this.fileName);
 
@@ -100,7 +51,7 @@ namespace MiunskeBoardProject.classes
                     if (!(pin.Type == "value" || pin.Type == "boolean"))
                         throw new JsonSerializationException("niedozwolona wartość 'type' w jednym z pinów (poprawne: 'value', 'boolean') " + connector.Name + " | plik : " + this.fileName);
 
-                    if (pin.Pin == null || pin.Pin <= 0 || pin.Pin > connector.Pins)
+                    if (pin.Pin == null || pin.Pin <= 0)
                         throw new JsonSerializationException("niedozwolona wartość 'pin' w jednym z pinów (wartość mniejsza lub równa 0 lub większa niż piny w konektorze) " + connector.Name + " | plik : " + this.fileName);
 
                     if (pin.CanBits == null || pin.CanBits == "" || !Regex.IsMatch(pin.CanBits, @"(^[0-9]{1,2}$)|(^[0-9]{1,2}[-][0-9]{1,2}$)"))

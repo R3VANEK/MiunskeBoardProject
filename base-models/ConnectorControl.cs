@@ -6,32 +6,14 @@ using System.Windows.Controls;
 
 namespace MiunskeBoardProject.base_models
 {
+
+
+    /// <summary>
+    /// klasa XAML, której jedynym zadaniem jest odróżniać kontroler, który jest elementem Image od innych obrazków
+    /// nie ma do niego żadnej logiki, ale każdy element w xamlu, który ma tą klasę dostanie swój click Handler
+    /// </summary>
     public class ConnectorControl : Image
     {
-        public double Pins
-        {
-            get { return (double)GetValue(PinsProperty); }
-            set { SetValue(PinsProperty, value); }
-        }
-
-
-        public static readonly DependencyProperty PinsProperty =
-           DependencyProperty.RegisterAttached(
-         "Pins",
-         typeof(double),
-         typeof(ConnectorControl),
-         new FrameworkPropertyMetadata(defaultValue: (double)0,
-             flags: FrameworkPropertyMetadataOptions.AffectsRender)
-       );
-
-
-        public static double GetPinsProperty(Image target)
-        {
-            return (double)target.GetValue(PinsProperty);
-        }
-
-
-        public static void SetPinsProperty(Image target, double value) =>
-            target.SetValue(PinsProperty, value);
+     
     }
 }

@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace MiunskeBoardProject.boards
 {
     /// <summary>
-    ///  Klasa zawierająca generyczne metody inicjujące logikę panelu Miunske<br/>
+    ///  Klasa zawierająca generyczne metody inicjujące logikę płytki głównej<br/>
     ///  Przy kopiowaniu tego pliku przy dodawaniu nowego panelu trzeba zmienić parametry:<br/>
     ///  <list type="bullet|number|table">
     ///     <item>
@@ -58,7 +58,7 @@ namespace MiunskeBoardProject.boards
             }
             catch(Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Błąd przy próbie odczytu pliku " + configFileName +"\n" + e.Message);
                 MessageBox.Show("Prosimy naprawić wsykakujący błąd zanim będzie można używać programu");
                 Environment.Exit(0);
             }

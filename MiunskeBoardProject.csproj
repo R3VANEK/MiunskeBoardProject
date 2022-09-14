@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <None Remove="images\boards\board.png" />
-    <None Remove="images\logo.png" />
     <None Remove="images\pieces\connector11Left.png" />
     <None Remove="images\pieces\connector4Rotate.png" />
     <None Remove="images\pieces\connector5Rotate.png" />
@@ -33,7 +32,6 @@
 
   <ItemGroup>
     <Resource Include="images\boards\board.png" />
-    <Resource Include="images\logo.png" />
     <Resource Include="images\pieces\connector11Left.png" />
     <Resource Include="images\pieces\connector4Rotate.png" />
     <Resource Include="images\pieces\connector5Rotate.png" />
@@ -41,18 +39,6 @@
     <Resource Include="images\pieces\connector6Rotate.png" />
     <Resource Include="images\pieces\connector7Rotate.png" />
     <Resource Include="images\pieces\connector9Rotate.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="boards\MiunskeG3.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="boards\MiunskeG3.xaml">
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
 
 </Project>

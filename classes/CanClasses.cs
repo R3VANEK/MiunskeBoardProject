@@ -7,7 +7,9 @@ using System.Timers;
 namespace MiunskeBoardProject.classes
 {
 
-
+    /// <summary>
+    /// Courtesy of Uwe Baus B.A.U.S AT
+    /// </summary>
     public class CanFoxEventArg : EventArgs
     {
         public CanFoxEventArg()
@@ -16,7 +18,9 @@ namespace MiunskeBoardProject.classes
         }
     }
 
-
+    /// <summary>
+    /// Courtesy of Uwe Baus B.A.U.S AT
+    /// </summary>
     public class CanFoxRxEventArg : CanFoxEventArg
     {
         private CANMessages _RxMessages = null;
@@ -59,7 +63,9 @@ namespace MiunskeBoardProject.classes
 
 
 
-
+    /// <summary>
+    /// Courtesy of Uwe Baus B.A.U.S AT
+    /// </summary>
     public class CANMessages : List<CANMessage>
     {
         public CANMessages()
@@ -84,6 +90,9 @@ namespace MiunskeBoardProject.classes
         }
     }
 
+    /// <summary>
+    /// Courtesy of Uwe Baus B.A.U.S AT
+    /// </summary>
     public class CANMessage
     {
         public struct sCANMessage
@@ -329,7 +338,9 @@ namespace MiunskeBoardProject.classes
         }
     }
 
-
+    /// <summary>
+    /// Courtesy of Uwe Baus B.A.U.S AT
+    /// </summary>
     public class CANFox
     {
         public enum ErrorCode

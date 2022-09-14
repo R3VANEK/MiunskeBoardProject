@@ -70,10 +70,18 @@ namespace MiunskeBoardProject.ui_elements
                     int index = int.Parse(canBit.ToString()) % 8;
                     newValue = Convert.ToInt32(binData.Substring(index, 1));
                 }
-                PinValueXAML.Dispatcher.Invoke(() =>
+
+                // uciszanie błędów ze względu na wyjście z aplikacji
+                // czasami użytkownik kliknie 'x' w momencie przygotowywania invoke i pojawi się błąd krytyczny zupełnie niepotrzebnie
+                try
                 {
-                    PinValueXAML.Text = newValue.ToString();
-                });
+                    PinValueXAML.Dispatcher.Invoke(() =>
+                    {
+                        PinValueXAML.Text = newValue.ToString();
+                    });
+                }
+                catch(Exception e1) { }
+
             }
         }
     }
