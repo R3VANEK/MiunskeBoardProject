@@ -41,4 +41,10 @@
     <Resource Include="images\pieces\connector9Rotate.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="connector-configurations\MiunskeG2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

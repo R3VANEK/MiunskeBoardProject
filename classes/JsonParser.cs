@@ -20,8 +20,8 @@ namespace MiunskeBoardProject.classes
         {
             this.fileName = fileName;
 
-           
-            string raw = File.ReadAllText("../../../connector-configurations/" + fileName);
+                        
+            string raw = File.ReadAllText(Directory.GetCurrentDirectory() + "/connector-configurations/" + fileName);
 
             Root config = JsonConvert.DeserializeObject<Root>(raw);
            

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -51,7 +52,7 @@ namespace MiunskeBoardProject.boards
         /// </summary>
         public MiunskeG2()
         {
-
+         
             try
             {
                 jsonParser = new JsonParser(configFileName);
