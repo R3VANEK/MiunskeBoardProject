@@ -86,8 +86,27 @@ namespace MiunskeBoardProject
         /// <param name="e"></param>
         private void can_button_click(object sender, EventArgs e)
         {
-            CANFox cf = new CANFox(true);
-            CANFox.Event_RxCanMessage += CANFox_Event_RxCanMessage;
+
+            CANFox cf = new CANFox();
+
+            try
+            {
+                CANFox.ErrorCode res = cf.openCan();
+
+                if(res != CANFox.ErrorCode.NTCAN_SUCCESS)
+                {
+                    MessageBox.Show(Enum.GetName(typeof(CANFox.ErrorCode), res));
+                    return;
+                }
+                
+                CANFox.Event_RxCanMessage += CANFox_Event_RxCanMessage;
+            }
+            catch(Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+            }
+           
+
         }
 
     }
